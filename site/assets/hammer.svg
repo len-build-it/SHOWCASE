@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" fill="none" aria-hidden="true">
+  <!-- Minimal cartoon hammer asset for Living Blueprint showcase -->
+  <g class="hammer-group">
+    <!-- Blue Handle with crisp warm white outline -->
+    <path d="M 48 48 L 92 92" stroke="#639FE8" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 48 48 L 92 92" stroke="#F2F0E6" stroke-width="2" stroke-dasharray="4 4"/>
+    <circle cx="92" cy="92" r="5" fill="#639FE8" stroke="#F2F0E6" stroke-width="2"/>
+
+    <!-- Hammer Head: Dark ink fill with strong off-white linework -->
+    <!-- Main head block -->
+    <path d="M 30 28 L 54 52 L 42 64 L 18 40 Z" fill="#0B1726" stroke="#F2F0E6" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Striking face (impact surface pointing down-left toward foundation) -->
+    <path d="M 18 40 L 12 46 L 22 56 L 28 50 Z" fill="#FFB36B" stroke="#F2F0E6" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Rear claw / wedge -->
+    <path d="M 44 14 C 54 18, 62 26, 66 38 L 54 48 L 38 32 Z" fill="#0B1726" stroke="#F2F0E6" stroke-width="3" stroke-linejoin="round"/>
+    <!-- Center wedge pin detail -->
+    <circle cx="36" cy="46" r="3" fill="#80E3E0" stroke="#F2F0E6" stroke-width="1.5"/>
+  </g>
+</svg>

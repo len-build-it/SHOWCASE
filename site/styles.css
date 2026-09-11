@@ -1,0 +1,909 @@
+/* Living Blueprint Showcase Stylesheet */
+:root {
+  --bg-ink: #0B1726;
+  --text-white: #F2F0E6;
+  --drafting-blue: #639FE8;
+  --accent-cyan: #80E3E0;
+  --impact-orange: #FFB36B;
+  --muted-text: #C3C9D4;
+
+  --grid-line: rgba(99, 159, 232, 0.12);
+  --grid-line-dense: rgba(99, 159, 232, 0.05);
+  --border-subtle: rgba(242, 240, 230, 0.2);
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --spine-left: 2.5rem;
+  --content-max-width: 1100px;
+}
+
+/* Box sizing and baseline */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  background-color: var(--bg-ink);
+  color: var(--text-white);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--bg-ink);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(var(--grid-line-dense) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line-dense) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  background-position: -1px -1px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Body lock during intro */
+body.intro-locked {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Accessible Skip Link */
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 1rem;
+  background: var(--accent-cyan);
+  color: var(--bg-ink);
+  padding: 0.5rem 1rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  z-index: 10000;
+  border-radius: 2px;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--impact-orange);
+}
+
+/* Accessible focus visible outlines */
+:focus-visible {
+  outline: 3px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+
+/* Intro Overlay - hidden by default unless .has-intro is added */
+.intro-overlay {
+  display: none;
+}
+
+.has-intro .intro-overlay {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: var(--bg-ink);
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+/* Fail-open CSS fallback: guarantees release by 5s even if JS crashes */
+.has-intro .intro-overlay {
+  animation: intro-css-fallback 5s forwards;
+}
+
+@keyframes intro-css-fallback {
+  0%, 88% {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+  98% {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+/* Intro Stage & Elements */
+.intro-stage {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-grid-layer {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed var(--drafting-blue);
+  opacity: 0.4;
+}
+
+.intro-foundation-block {
+  position: absolute;
+  top: 160px;
+  left: 120px;
+  width: 80px;
+  height: 44px;
+  border: 2px solid var(--text-white);
+  background: rgba(99, 159, 232, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.block-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--drafting-blue);
+  letter-spacing: 0.05em;
+}
+
+.intro-hammer-wrap {
+  position: absolute;
+  top: 60px;
+  left: 135px;
+  width: 120px;
+  height: 120px;
+  transform-origin: 92px 92px;
+  transform: translate(50px, -50px) rotate(-35deg);
+  opacity: 0;
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s ease;
+}
+
+.intro-hammer-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Impact strokes burst */
+.intro-impact-burst {
+  position: absolute;
+  top: 152px;
+  left: 132px;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+}
+
+.impact-stroke {
+  position: absolute;
+  background-color: var(--impact-orange);
+  box-shadow: 0 0 6px var(--impact-orange);
+  opacity: 0;
+  border-radius: 2px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.stroke-1 {
+  top: 4px;
+  left: 0px;
+  width: 14px;
+  height: 3px;
+  transform: rotate(-35deg) scale(0.6);
+}
+
+.stroke-2 {
+  top: -6px;
+  left: 12px;
+  width: 16px;
+  height: 3px;
+  transform: rotate(45deg) scale(0.6);
+}
+
+.stroke-3 {
+  top: 10px;
+  left: 18px;
+  width: 12px;
+  height: 3px;
+  transform: rotate(85deg) scale(0.6);
+}
+
+/* Connection line drawing out from strike */
+.intro-connection-line {
+  position: absolute;
+  top: 204px;
+  left: 160px;
+  width: 2px;
+  height: 0;
+  background-color: var(--drafting-blue);
+  box-shadow: 0 0 6px rgba(99, 159, 232, 0.6);
+  opacity: 0;
+  transition: height 0.8s ease-out, opacity 0.3s ease;
+}
+
+/* Storyboard Phase Classes */
+.intro-overlay.phase-init .intro-foundation-block {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.intro-overlay.phase-enter .intro-foundation-block,
+.intro-overlay.phase-strike .intro-foundation-block,
+.intro-overlay.phase-line .intro-foundation-block,
+.intro-overlay.phase-withdraw .intro-foundation-block {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.intro-overlay.phase-enter .intro-hammer-wrap {
+  opacity: 1;
+  transform: translate(20px, -15px) rotate(-35deg);
+}
+
+.intro-overlay.phase-strike .intro-hammer-wrap {
+  opacity: 1;
+  transform: translate(-10px, 35px) rotate(8deg) scale(0.98);
+}
+
+.intro-overlay.phase-strike .stroke-1,
+.intro-overlay.phase-strike .stroke-2,
+.intro-overlay.phase-strike .stroke-3 {
+  opacity: 1;
+  transform: scale(1.3);
+}
+
+.intro-overlay.phase-line .intro-hammer-wrap {
+  opacity: 1;
+  transform: translate(0px, 5px) rotate(-5deg);
+}
+
+.intro-overlay.phase-line .intro-connection-line {
+  opacity: 1;
+  height: 116px;
+}
+
+.intro-overlay.phase-withdraw .intro-hammer-wrap {
+  opacity: 0;
+  transform: translate(50px, -50px) rotate(-35deg);
+}
+
+.intro-overlay.phase-withdraw .intro-connection-line {
+  opacity: 1;
+  height: 116px;
+}
+
+.intro-overlay.phase-release {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* State when intro is cleared */
+.intro-finished .intro-overlay {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Header & Navigation */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(11, 23, 38, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.875rem 1.5rem;
+}
+
+.header-inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brand-tag {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-coord {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--drafting-blue);
+  letter-spacing: 0.05em;
+}
+
+.brand-title {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-white);
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--muted-text);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-cyan);
+  border-bottom-color: var(--accent-cyan);
+}
+
+/* Main Story Flow with Continuous Blueprint Spine inside container */
+.story-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+  position: relative;
+}
+
+.blueprint-spine {
+  position: absolute;
+  left: var(--spine-left);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.spine-line {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0px,
+    var(--drafting-blue) 4rem,
+    var(--drafting-blue) calc(100% - 4rem),
+    transparent 100%
+  );
+  opacity: 0.8;
+}
+
+.chapter {
+  position: relative;
+  margin-bottom: 5.5rem;
+  padding-left: 4.5rem;
+  scroll-margin-top: 6rem;
+}
+
+/* Chapter markers connecting cleanly to spine */
+.chapter-marker {
+  position: absolute;
+  left: calc(var(--spine-left) - 5px);
+  top: 0.35rem;
+  display: flex;
+  align-items: center;
+}
+
+.marker-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--bg-ink);
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(128, 227, 224, 0.4);
+}
+
+.chapter-content {
+  max-width: 780px;
+}
+
+.chapter-header-rule {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.marker-coord {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--drafting-blue);
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.rule-divider {
+  color: var(--border-subtle);
+  font-size: 0.75rem;
+}
+
+.rule-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--drafting-blue);
+}
+
+.chapter-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-white);
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.chapter-body {
+  font-size: 1.125rem;
+  color: var(--muted-text);
+  line-height: 1.7;
+}
+
+/* Chapter 1: Spark Specifics */
+.chapter-spark {
+  margin-top: 1rem;
+}
+
+.spark-heading-group {
+  position: relative;
+}
+
+.foundation-anchor {
+  width: 32px;
+  height: 4px;
+  background-color: var(--impact-orange);
+  margin-bottom: 1rem;
+}
+
+.hero-name {
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text-white);
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  color: var(--accent-cyan);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-lead {
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  color: var(--text-white);
+  line-height: 1.5;
+  max-width: 680px;
+  border-left: 2px solid var(--drafting-blue);
+  padding-left: 1rem;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Chapter 2: Problem Drafting Annotations */
+.drafting-annotations {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px dashed var(--drafting-blue);
+  background: rgba(99, 159, 232, 0.04);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.annotation-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--impact-orange);
+}
+
+.annotation-dim {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--drafting-blue);
+}
+
+/* Chapter 3: Build - Truthful WIP Blueprint Frame */
+.blueprint-wip-frame {
+  margin-top: 2rem;
+  position: relative;
+  border: 1px solid var(--drafting-blue);
+  background: rgba(11, 23, 38, 0.6);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+}
+
+.frame-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--accent-cyan);
+}
+
+.frame-corner.top-left {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--accent-cyan);
+  border-left: 2px solid var(--accent-cyan);
+}
+
+.frame-corner.top-right {
+  top: -1px;
+  right: -1px;
+  border-top: 2px solid var(--accent-cyan);
+  border-right: 2px solid var(--accent-cyan);
+}
+
+.frame-corner.bottom-left {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 2px solid var(--accent-cyan);
+  border-left: 2px solid var(--accent-cyan);
+}
+
+.frame-corner.bottom-right {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--accent-cyan);
+  border-right: 2px solid var(--accent-cyan);
+}
+
+.frame-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 1.5rem;
+}
+
+.drafting-note {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--impact-orange);
+  letter-spacing: 0.05em;
+}
+
+.frame-status {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--drafting-blue);
+}
+
+.frame-text {
+  font-size: 1.125rem;
+  color: var(--text-white);
+  line-height: 1.7;
+}
+
+.frame-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1.25rem;
+  margin-top: 1.5rem;
+  border-top: 1px dashed var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--drafting-blue);
+}
+
+/* Chapter 4: Method Sequential Steps */
+.method-steps-list {
+  list-style: none;
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.method-step-item {
+  border: 1px solid var(--border-subtle);
+  padding: 1.25rem;
+  background: rgba(99, 159, 232, 0.02);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.2s ease;
+}
+
+.method-step-item:hover {
+  border-color: var(--drafting-blue);
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-cyan);
+}
+
+.step-desc strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-white);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+}
+
+.step-desc p {
+  font-size: 0.95rem;
+  color: var(--muted-text);
+  line-height: 1.5;
+}
+
+/* Chapter 5: Next Build Contact Actions */
+.contact-links-group {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.contact-link {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  border-radius: 2px;
+  min-width: 200px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.contact-link .link-label {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.contact-link .link-detail {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.contact-link.action-primary {
+  background-color: var(--accent-cyan);
+  color: var(--bg-ink);
+  border: 2px solid var(--accent-cyan);
+}
+
+.contact-link.action-primary .link-detail {
+  color: #061c28;
+}
+
+.contact-link.action-primary:hover {
+  background-color: #9cf0ee;
+  border-color: #9cf0ee;
+  transform: translateY(-2px);
+}
+
+.contact-link.action-secondary {
+  background-color: rgba(99, 159, 232, 0.08);
+  color: var(--text-white);
+  border: 1px solid var(--drafting-blue);
+}
+
+.contact-link.action-secondary .link-detail {
+  color: var(--drafting-blue);
+}
+
+.contact-link.action-secondary:hover {
+  border-color: var(--accent-cyan);
+  background-color: rgba(128, 227, 224, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Footer / Colophon */
+.site-footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 2rem 1.5rem;
+  background-color: rgba(11, 23, 38, 0.95);
+}
+
+.footer-inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-id {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--drafting-blue);
+  letter-spacing: 0.08em;
+}
+
+.footer-copy {
+  font-size: 0.875rem;
+  color: var(--muted-text);
+}
+
+.back-to-top {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--accent-cyan);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+}
+
+.back-to-top:hover {
+  text-decoration: underline;
+}
+
+/* Responsive & Mobile Layout */
+@media (max-width: 768px) {
+  :root {
+    --spine-left: 1rem;
+  }
+
+  .story-container {
+    padding: 2rem 1rem 4rem;
+  }
+
+  .chapter {
+    padding-left: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .chapter-marker {
+    left: calc(var(--spine-left) - 5px);
+  }
+
+  .chapter-title {
+    font-size: clamp(1.4rem, 5vw, 1.85rem);
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .chapter-header-rule {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .rule-divider {
+    display: none;
+  }
+
+  .marker-coord, .rule-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-lead {
+    font-size: 1.05rem;
+    padding-left: 0.75rem;
+  }
+
+  .site-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-list {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .blueprint-wip-frame {
+    padding: 1.25rem;
+  }
+
+  .contact-link {
+    width: 100%;
+  }
+}
+
+/* Ultra-narrow / 320px viewport support */
+@media (max-width: 380px) {
+  :root {
+    --spine-left: 0.5rem;
+  }
+
+  .story-container {
+    padding: 1.5rem 0.75rem 3rem;
+  }
+
+  .chapter {
+    padding-left: 1.25rem;
+  }
+
+  .hero-name {
+    font-size: 1.5rem;
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 0.875rem;
+  }
+
+  .hero-lead {
+    font-size: 0.95rem;
+    padding-left: 0.5rem;
+  }
+
+  .chapter-title {
+    font-size: 1.25rem;
+  }
+
+  .nav-link {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.2rem;
+  }
+}
+
+/* Reduced Motion Mode */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .intro-overlay {
+    display: none !important;
+    animation: none !important;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
