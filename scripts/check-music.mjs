@@ -15,13 +15,15 @@ const tracks = [
 
 assert.equal((script.match(/title: '/g) || []).length, tracks.length);
 tracks.forEach((track) => assert.equal(fs.existsSync(new URL(encodeURIComponent(track), musicDir)), true, track));
-['music-widget', 'music-track-toggle', 'music-track-menu', 'music-play', 'music-previous', 'music-next', 'music-mute', 'music-wave'].forEach((id) => {
+['music-widget', 'music-track-toggle', 'music-track-menu', 'music-play', 'music-previous', 'music-next', 'music-mute', 'music-favorite', 'music-wave', 'music-progress', 'music-time-elapsed', 'music-time-remaining'].forEach((id) => {
   assert.match(html, new RegExp(`id="${id}"`));
 });
 assert.doesNotMatch(html, /Soundtrack ready when you are\./);
 assert.match(html, /<audio[^>]+autoplay[^>]+muted/);
 assert.match(script, /new AudioContext\(\)/);
 assert.match(script, /audio\.addEventListener\('ended'/);
+assert.match(script, /audio\.addEventListener\('timeupdate'/);
+assert.match(script, /audio\.currentTime = Number\(progress\.value\)/);
 assert.match(html, /<script src="script\.js"><\/script>/);
 
 console.log('Music checks passed: 5 local tracks, widget hooks, analyser, and playlist advance are present.');

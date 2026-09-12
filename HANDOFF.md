@@ -1,10 +1,10 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T21:15:35+08:00
-Revision: 10
-State: FEAT-003 cursor spotlight complete at checkpoint commit
-Feature: FEAT-003
+Updated: 2026-09-12T21:29:22+08:00
+Revision: 11
+State: FEAT-002 reference UI refinement complete; FEAT-003 cursor spotlight complete
+Feature: FEAT-002 / FEAT-003
 
 ## Read first
 
@@ -37,10 +37,11 @@ Reread these files and inspect actual Git status before acting.
 | FEAT-002 implementation plan | Revision 3 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
 | FEAT-001 shell refinement | Revision 3 feature spec and Revision 5 product and architecture documents | User request "Remove the header thingy and for the footer just include a privacy policy" on 2026-09-12 |
 | FEAT-003 feature spec and plan | Revision 1 | User message "approve spotlight" on 2026-09-12 |
+| FEAT-002 reference UI refinement | Revision 3 feature spec and Revision 5 implementation plan | User request for the supplied music-player reference UI on 2026-09-12T21:13:53+08:00 |
 
-Allowed work: Execute the approved FEAT-003 cursor grid spotlight, run verification, record evidence, and commit the reviewed paths.
+Allowed work: Commit the already-implemented and verified FEAT-002 reference UI refinement; no new behavior beyond its revision 3 scope.
 
-Allowed implementation phases: FEAT-003 Phase 1 responsive no-trace spotlight.
+Allowed implementation phases: FEAT-002 reference UI refinement.
 
 Architecture and behavior changes return to Len; this handoff cannot override the linked specs.
 
@@ -53,6 +54,8 @@ FEAT-003 implementation and verification are complete at the checkpoint commit.
 FEAT-003 static checks passed, existing intro and music checks passed, and the available browser confirmed the fine-pointer spotlight state and no horizontal overflow.
 
 Direct touch, coarse-pointer, reduced-motion, and pointer-leave browser scenarios remain pending because the available embedded browser did not expose those emulations during this run.
+
+FEAT-002 reference UI refinement is complete in the working tree with passing music, intro, syntax, and diff checks.
 
 FEAT-001 Phase 1 implementation and verification are complete at commit `c142ebd`.
 
