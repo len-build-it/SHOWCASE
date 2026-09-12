@@ -1,9 +1,9 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:27:18+08:00
-Revision: 5
-State: FEAT-001 complete; FEAT-002 Phase 1 complete
+Updated: 2026-09-12T20:46:17+08:00
+Revision: 7
+State: FEAT-001 complete; FEAT-002 correction complete
 Feature: FEAT-002
 
 ## Read first
@@ -30,8 +30,8 @@ Reread these files and inspect actual Git status before acting.
 | Architecture | Revision 3 | User message "okay proceed with implementing, also make sure to make changes on the documentation" on 2026-09-12 after the six proposed behavior decisions |
 | Feature spec | Revision 2 | User message "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00 |
 | Implementation plan | Revision 2 / 3 | User message "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00 |
-| FEAT-002 feature spec | Revision 1 | User message "okay proceed with implementing, also make sure to make changes on the documentation" on 2026-09-12 after the six proposed behavior decisions |
-| FEAT-002 implementation plan | Revision 1 | User message "okay proceed with implementing, also make sure to make changes on the documentation" on 2026-09-12 after the six proposed behavior decisions |
+| FEAT-002 feature spec | Revision 2 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
+| FEAT-002 implementation plan | Revision 3 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
 
 Allowed work: Execute FEAT-002 Phase 1 tasks, run verification, record evidence, and commit its Phase 1 checkpoint.
 
@@ -43,7 +43,7 @@ Architecture and behavior changes return to Len; this handoff cannot override th
 
 FEAT-001 Phase 1 implementation and verification are complete at commit `c142ebd`.
 
-FEAT-002 implementation and verification are complete at the local checkpoint commit.
+FEAT-002 base implementation is complete at the local checkpoint commit; its correction pass is complete at the local fix checkpoint commit.
 
 New FEAT-002 paths include the glass widget markup and styles, the local playlist controller, the preview music route, the static music check, the feature spec, the implementation plan, and the verification record.
 
@@ -91,3 +91,5 @@ FEAT-002 checkpoint commit `feat(portfolio): add glass music widget` is complete
 - Revision 3 records Len's chat approval on 2026-09-11T21:20:30+08:00, completed Phase 1 implementation and verification, and screenshot evidence.
 - Revision 4 records FEAT-002 approval, local MP3 availability, and the active music-widget implementation scope.
 - Revision 5 records FEAT-002 completion at the local checkpoint commit.
+- Revision 6 records the user-reported static controls, corrected plain-script bootstrap, custom track menu, autoplay fallback, and pending fix checkpoint.
+- Revision 7 records the completed fix checkpoint and the embedded-browser autoplay limitation.

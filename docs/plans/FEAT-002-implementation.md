@@ -1,11 +1,11 @@
 # Implementation Plan: FEAT-002 Glass music widget
 
 Created: 2026-09-12T20:15:05+08:00
-Updated: 2026-09-12T20:27:18+08:00
-Revision: 2
+Updated: 2026-09-12T20:46:17+08:00
+Revision: 4
 Status: Complete
-Feature spec and revision: [FEAT-002 revision 1](../features/FEAT-002-music-widget.md)
-Approved baseline and architecture revisions: [Product revision 3](../product/OVERVIEW.md), [Architecture revision 3](../product/ARCHITECTURE.md)
+Feature spec and revision: [FEAT-002 revision 2](../features/FEAT-002-music-widget.md)
+Approved baseline and architecture revisions: [Product revision 4](../product/OVERVIEW.md), [Architecture revision 4](../product/ARCHITECTURE.md)
 Len's chat approval: `okay proceed with implementing, also make sure to make changes on the documentation` on 2026-09-12 after the round-1 proposals.
 Target branch: `master` (verified before implementation)
 
@@ -27,6 +27,7 @@ State: Complete
 - [x] Add local playlist playback, autoplay fallback, track switching, playlist wraparound, mute state, analyser updates, and CSS fallback.
 - [x] Add one small static validation check for the playlist and required widget hooks.
 - [x] Update product, architecture, index, handoff, and verification records.
+- [x] Repair the browser bootstrap, autoplay fallback, and widget-styled track menu after user verification.
 
 ### Verification
 
@@ -35,16 +36,17 @@ State: Complete
 - [x] `node scripts/check-music.mjs` passes playlist and widget-hook assertions.
 - [x] Preview server returns 200 for the page and all five MP3 assets.
 - [x] Browser scenarios verify autoplay fallback, controls, track selection, waveform structure, responsive desktop placement, and no horizontal overflow in the available browser.
+- [x] Browser scenarios verify the corrected plain-script bootstrap, custom listbox open/select behavior, and sound-enable gesture.
 - [x] Evidence is recorded in `docs/evidence/FEAT-002-verification.md`; visual screenshot inspected in the browser session.
 
 ### Review and checkpoint
 
 - [x] Review correctness, accessibility, scope, dependency count, and Ponytail simplicity.
 - [x] Update plan, evidence, and current handoff with actual results.
-- [x] Stage only reviewed phase-related paths and verify the staged diff.
-- [x] Commit with `feat(portfolio): add glass music widget` and verify Git reports success.
+- [x] Stage only reviewed correction paths and verify the staged diff.
+- [x] Commit with `fix(portfolio): repair music widget controls` and verify Git reports success.
 
-Checkpoint message: `feat(portfolio): add glass music widget`
+Checkpoint message: `fix(portfolio): repair music widget controls`
 Phase completion requires all gates and a successful commit.
 
 ## Recovery

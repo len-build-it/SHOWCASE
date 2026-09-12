@@ -158,6 +158,9 @@ body.intro-locked {
 }
 
 .music-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   min-height: 2.25rem;
   padding: 0.35rem 0.5rem;
@@ -166,9 +169,43 @@ body.intro-locked {
   border: 1px solid var(--drafting-blue);
   border-radius: 0.3rem;
   font: 0.85rem var(--font-mono);
+  text-align: left;
+  cursor: pointer;
 }
 
-.music-track option { color: var(--bg-ink); }
+.music-select-wrap { position: relative; }
+
+.music-track-menu {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.35rem);
+  left: 0;
+  z-index: 2;
+  padding: 0.35rem;
+  list-style: none;
+  background: rgba(11, 23, 38, 0.97);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 0.45rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.42);
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+}
+
+.music-track-menu li {
+  padding: 0.55rem 0.65rem;
+  color: var(--text-white);
+  border-radius: 0.25rem;
+  font: 0.85rem var(--font-mono);
+  cursor: pointer;
+}
+
+.music-track-menu li:hover,
+.music-track-menu li:focus-visible,
+.music-track-menu li[aria-selected="true"] {
+  color: var(--bg-ink);
+  background: var(--accent-cyan);
+  outline: none;
+}
 
 .music-controls {
   margin-top: 0.7rem;

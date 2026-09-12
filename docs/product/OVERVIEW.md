@@ -1,9 +1,9 @@
 # Product overview: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:15:05+08:00
-Revision: 3
-Status: Approved by Len on 2026-09-12T20:15:05+08:00
+Updated: 2026-09-12T20:46:17+08:00
+Revision: 4
+Status: Approved by Len on 2026-09-12T20:46:17+08:00
 
 ## Purpose and users
 
@@ -58,3 +58,4 @@ Len approved the revision 3 audio-scope update through the 2026-09-12 implementa
 - Revision 1 recorded the discussion baseline and incorrectly marked the written document approved.
 - Revision 2 corrects the approval attribution and distinguishes the silent skeleton from future music delivery.
 - Revision 3 links the approved local music widget delivery and records that the supplied playlist is available.
+- Revision 4 records the corrected autoplay fallback and browser-compatible widget bootstrap.

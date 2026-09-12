@@ -6,7 +6,7 @@
  * reduced-motion bypass, asset-failure recovery, and tab-visibility recovery.
  */
 
-export function createIntroController(deps = {}) {
+function createIntroController(deps = {}) {
   const {
     isReducedMotion = false,
     onRelease = () => {},
@@ -102,7 +102,7 @@ export function createIntroController(deps = {}) {
   };
 }
 
-export const MUSIC_TRACKS = [
+const MUSIC_TRACKS = [
   { title: 'Retry Retry', src: 'music/Panda%20Beats%20-%20Retry%20Retry.mp3' },
   { title: 'Mister Prime', src: 'music/Panda%20Beats%20-%20Mister%20Prime.mp3' },
   { title: 'Hills Of Hell', src: 'music/Panda%20Beats%20-%20Hills%20Of%20Hell.mp3' },
@@ -110,10 +110,15 @@ export const MUSIC_TRACKS = [
   { title: 'All Wave Control', src: 'music/Panda%20Beats%20-%20All%20Wave%20Control.mp3' },
 ];
 
+globalThis.createIntroController = createIntroController;
+
 function setupMusicPlayer() {
   const widget = document.getElementById('music-widget');
   const audio = document.getElementById('music-audio');
-  const trackSelect = document.getElementById('music-track');
+  const trackToggle = document.getElementById('music-track-toggle');
+  const trackValue = document.getElementById('music-track-value');
+  const trackMenu = document.getElementById('music-track-menu');
+  const trackOptions = [...document.querySelectorAll('#music-track-menu [role="option"]')];
   const playButton = document.getElementById('music-play');
   const previousButton = document.getElementById('music-previous');
   const nextButton = document.getElementById('music-next');
@@ -122,9 +127,10 @@ function setupMusicPlayer() {
   const waveBars = [...document.querySelectorAll('#music-wave span')];
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  if (!widget || !audio || !trackSelect || !playButton || !status) return;
+  if (!widget || !audio || !trackToggle || !trackValue || !trackMenu || !playButton || !status) return;
 
-  let currentIndex = Number(trackSelect.value) || 0;
+  audio.muted = false;
+  let currentIndex = 0;
   let audioContext;
   let analyser;
   let source;
@@ -137,9 +143,10 @@ function setupMusicPlayer() {
 
   function syncControls() {
     const isPlaying = !audio.paused;
+    const needsSoundGesture = isPlaying && audio.muted;
     widget.classList.toggle('is-playing', isPlaying);
-    playButton.textContent = isPlaying ? 'Pause' : 'Play';
-    playButton.setAttribute('aria-label', isPlaying ? 'Pause music' : 'Play music');
+    playButton.textContent = needsSoundGesture ? 'Enable sound' : isPlaying ? 'Pause' : 'Play';
+    playButton.setAttribute('aria-label', needsSoundGesture ? 'Enable sound' : isPlaying ? 'Pause music' : 'Play music');
     muteButton.textContent = audio.muted ? 'Unmute' : 'Mute';
     muteButton.setAttribute('aria-label', audio.muted ? 'Unmute music' : 'Mute music');
     muteButton.setAttribute('aria-pressed', String(audio.muted));
@@ -180,23 +187,45 @@ function setupMusicPlayer() {
     }
   }
 
-  async function playAudio() {
+  async function playAudio({fallbackToMuted = false} = {}) {
     try {
       ensureAnalyser();
-      if (audioContext?.state === 'suspended') await audioContext.resume();
-      await audio.play();
+      if (audioContext?.state === 'suspended') audioContext.resume().catch(() => {});
+      const playPromise = audio.play();
+      await (fallbackToMuted
+        ? Promise.race([
+          playPromise,
+          new Promise((_, reject) => setTimeout(() => reject(new Error('autoplay timeout')), 800)),
+        ])
+        : playPromise);
       setStatus(`Playing ${MUSIC_TRACKS[currentIndex].title}.`);
       syncControls();
       startWave();
     } catch {
-      setStatus('Sound is off until you enable it.');
-      syncControls();
+      if (!fallbackToMuted || !audio.paused) {
+        setStatus('Click Enable sound to hear the soundtrack.');
+        syncControls();
+        return;
+      }
+      audio.muted = true;
+      try {
+        await audio.play();
+        setStatus('Playing muted. Click Enable sound for audio.');
+        syncControls();
+        startWave();
+      } catch {
+        setStatus('Click Enable sound to start the soundtrack.');
+        syncControls();
+      }
     }
   }
 
   function loadTrack(index, shouldPlay) {
     currentIndex = (index + MUSIC_TRACKS.length) % MUSIC_TRACKS.length;
-    trackSelect.value = String(currentIndex);
+    trackValue.textContent = MUSIC_TRACKS[currentIndex].title;
+    trackOptions.forEach((option, index) => {
+      option.setAttribute('aria-selected', String(index === currentIndex));
+    });
     audio.src = MUSIC_TRACKS[currentIndex].src;
     audio.load();
     setStatus(`${MUSIC_TRACKS[currentIndex].title} selected.`);
@@ -204,7 +233,11 @@ function setupMusicPlayer() {
   }
 
   playButton.addEventListener('click', () => {
-    if (audio.paused) playAudio();
+    if (audio.muted && !audio.paused) {
+      audio.muted = false;
+      setStatus(`Playing ${MUSIC_TRACKS[currentIndex].title}.`);
+      syncControls();
+    } else if (audio.paused) playAudio();
     else audio.pause();
   });
 
@@ -219,7 +252,40 @@ function setupMusicPlayer() {
     syncControls();
     setStatus(audio.muted ? 'Music muted.' : 'Music unmuted.');
   });
-  trackSelect.addEventListener('change', () => loadTrack(Number(trackSelect.value), !audio.paused));
+  function closeTrackMenu() {
+    trackMenu.hidden = true;
+    trackToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  trackToggle.addEventListener('click', () => {
+    const isOpen = !trackMenu.hidden;
+    trackMenu.hidden = isOpen;
+    trackToggle.setAttribute('aria-expanded', String(!isOpen));
+    if (!isOpen) trackOptions[currentIndex].focus();
+  });
+  trackOptions.forEach((option, index) => {
+    option.addEventListener('click', () => {
+      loadTrack(index, !audio.paused);
+      closeTrackMenu();
+      trackToggle.focus();
+    });
+    option.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+        event.preventDefault();
+        const direction = event.key === 'ArrowDown' ? 1 : -1;
+        trackOptions[(index + direction + trackOptions.length) % trackOptions.length].focus();
+      } else if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        option.click();
+      } else if (event.key === 'Escape') {
+        closeTrackMenu();
+        trackToggle.focus();
+      }
+    });
+  });
+  document.addEventListener('click', (event) => {
+    if (!widget.contains(event.target)) closeTrackMenu();
+  });
   audio.addEventListener('play', syncControls);
   audio.addEventListener('pause', () => {
     stopWave();
@@ -237,8 +303,8 @@ function setupMusicPlayer() {
   });
 
   syncControls();
-  setStatus('Click Play to enable sound.');
-  playAudio();
+  setStatus('Starting soundtrack...');
+  playAudio({fallbackToMuted: true});
 }
 
 // Browser bootstrap

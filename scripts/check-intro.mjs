@@ -1,5 +1,11 @@
 import assert from 'node:assert/strict';
-import { createIntroController } from '../site/script.js';
+import fs from 'node:fs';
+import vm from 'node:vm';
+
+const browserScript = fs.readFileSync(new URL('../site/script.js', import.meta.url), 'utf8');
+const browserContext = vm.createContext({ console });
+vm.runInContext(browserScript, browserContext);
+const { createIntroController } = browserContext;
 
 console.log('Running Living Blueprint Intro Release Logic Assertions...\n');
 

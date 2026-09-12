@@ -40,21 +40,27 @@
       <span class="music-kicker">SOUNDTRACK // FIELD NOTES</span>
       <button class="music-icon-button" id="music-mute" type="button" aria-label="Mute music" aria-pressed="false">Mute</button>
     </div>
-    <label class="music-track-label" for="music-track">Now playing</label>
-    <select class="music-track" id="music-track" aria-label="Choose soundtrack">
-      <option value="0">Retry Retry</option>
-      <option value="1">Mister Prime</option>
-      <option value="2">Hills Of Hell</option>
-      <option value="3">Diab-low</option>
-      <option value="4">All Wave Control</option>
-    </select>
+    <span class="music-track-label" id="music-track-label">Now playing</span>
+    <div class="music-select-wrap">
+      <button class="music-track" id="music-track-toggle" type="button" aria-labelledby="music-track-label music-track-value" aria-haspopup="listbox" aria-expanded="false">
+        <span id="music-track-value">Retry Retry</span>
+        <span aria-hidden="true">⌄</span>
+      </button>
+      <ul class="music-track-menu" id="music-track-menu" role="listbox" aria-label="Choose soundtrack" hidden>
+        <li role="option" aria-selected="true" data-value="0" tabindex="-1">Retry Retry</li>
+        <li role="option" aria-selected="false" data-value="1" tabindex="-1">Mister Prime</li>
+        <li role="option" aria-selected="false" data-value="2" tabindex="-1">Hills Of Hell</li>
+        <li role="option" aria-selected="false" data-value="3" tabindex="-1">Diab-low</li>
+        <li role="option" aria-selected="false" data-value="4" tabindex="-1">All Wave Control</li>
+      </ul>
+    </div>
     <div class="music-controls" aria-label="Playback controls">
       <button class="music-control" id="music-previous" type="button" aria-label="Previous track">Prev</button>
       <button class="music-control music-play" id="music-play" type="button" aria-label="Enable sound">Enable sound</button>
       <button class="music-control" id="music-next" type="button" aria-label="Next track">Next</button>
     </div>
-    <p class="music-status" id="music-status" role="status" aria-live="polite">Soundtrack ready when you are.</p>
-    <audio class="music-audio" id="music-audio" preload="metadata" src="music/Panda%20Beats%20-%20Retry%20Retry.mp3"></audio>
+    <p class="music-status" id="music-status" role="status" aria-live="polite"></p>
+    <audio class="music-audio" id="music-audio" autoplay muted preload="metadata" src="music/Panda%20Beats%20-%20Retry%20Retry.mp3"></audio>
   </aside>
 
   <!-- Persistent Site Header & Navigation -->
@@ -257,6 +263,6 @@
     </div>
   </footer>
 
-  <script type="module" src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 # Architecture: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:15:05+08:00
-Revision: 3
-Status: Approved by Len on 2026-09-12T20:15:05+08:00
+Updated: 2026-09-12T20:46:17+08:00
+Revision: 4
+Status: Approved by Len on 2026-09-12T20:46:17+08:00
 
 ## Observed facts and assumptions
 
@@ -39,7 +39,7 @@ The project area uses truthful placeholder content until project material is sup
 
 The music delivery uses one native HTML audio element and independent playback state; it never gates the intro or content release.
 
-The widget uses a static local playlist, native audio events, and a browser-built Web Audio analyser with a CSS fallback for the waveform.
+The widget uses a static local playlist, native audio events, a widget-styled accessible listbox, and a browser-built Web Audio analyser with a CSS fallback for the waveform.
 
 Playback controls, autoplay fallback, and media error handling are specified in [FEAT-002](../features/FEAT-002-music-widget.md).
 
@@ -71,6 +71,8 @@ The silent skeleton's deferred audio requirements remain historical scope bounda
 
 Project content remains out of the skeleton to avoid inventing details and to keep the later content phase independently reviewable.
 
+The browser bootstrap uses a plain script so static hosting and direct browser loading do not fail solely because module execution is unavailable.
+
 The architecture intentionally avoids animation libraries and new dependencies unless a measured implementation problem requires Len's authorization.
 
 ## Open questions and approval
@@ -90,3 +92,4 @@ Revisit the static approach only if later approved interactions require capabili
 - Revision 1 proposed a static page but left source paths, preview setup, and intro recovery unresolved.
 - Revision 2 specifies tracked source files, a bounded preview helper, progressive enhancement and recovery, and deferred audio ownership.
 - Revision 3 records the approved native local-playlist audio boundary and analyser fallback.
+- Revision 4 records the plain-script bootstrap, custom listbox, and muted autoplay fallback.

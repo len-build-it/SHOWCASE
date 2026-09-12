@@ -1,8 +1,8 @@
 # Verification: FEAT-002
 
 Created: 2026-09-12T20:21:59+08:00
-Updated: 2026-09-12T20:21:59+08:00
-Revision: 1
+Updated: 2026-09-12T20:46:17+08:00
+Revision: 2
 
 | Requirement / phase | Check or scenario | Environment and conditions | Actual result | When run | Evidence / limitations |
 | --- | --- | --- | --- | --- | --- |
@@ -16,13 +16,18 @@ Revision: 1
 | Track switching | Activate `Next track`, mute, and choose `All Wave Control`. | Same browser and local playlist. | Passed: selected track and status changed, mute state was announced as `Unmute music`, and selected-track playback continued. | 2026-09-12T20:22:00+08:00 | Ended-event wraparound not forced because it would require waiting for full tracks. |
 | Layout and waveform structure | Inspect rendered widget and page dimensions. | Same browser, viewport `806` CSS px wide. | Passed: 12 waveform bars rendered, widget was positioned at the lower right, and `scrollWidth <= innerWidth` was true. | 2026-09-12T20:22:00+08:00 | Mobile physical-device review remains pending. |
 | Console errors | Browser console filtered to warnings and errors. | Same browser and local preview. | Passed: no warnings or errors captured. | 2026-09-12T20:22:00+08:00 | One browser environment only. |
+| Corrected bootstrap | Reload after changing the browser script from module to plain script. | Codex in-app browser, local preview. | Passed: the widget initialized, controls changed state, and no console warnings or errors were captured. | 2026-09-12T20:46:00+08:00 | Direct `file://` navigation is blocked by the browser test policy, so HTTP preview was used. |
+| Widget-styled menu | Open the track button and select `Mister Prime`. | Same browser and local preview. | Passed: the glass listbox opened above the widget, exposed five options, closed after selection, and status changed to `Playing Mister Prime.`. | 2026-09-12T20:46:00+08:00 | Keyboard arrow traversal is implemented but not separately exercised here. |
+| Sound-enable gesture | Start muted playback with `Play music`, then activate `Enable sound`. | Same browser and local preview. | Passed: playback began after the gesture, the button changed to `Enable sound`, and the gesture changed the mute state to unmuted with `Pause music`. | 2026-09-12T20:46:00+08:00 | The embedded browser blocked both audible and muted autoplay on fresh load; this is recorded as a browser limitation, not treated as successful autoplay. |
 
 ## Limitations and pending evidence
 
 - Physical-device playback, speaker output, and mobile safe-area behavior remain pending Len's device review.
 - Full playlist ended-event wraparound was not waited through because supplied tracks are several minutes long.
 - Reduced-motion behavior is covered by the CSS rule and should receive a dedicated browser preference run when a viewport or preference override is available.
+- Fresh-load autoplay is attempted with audible and muted paths, but the available embedded browser blocks both without a gesture.
 
 ## Revision history
 
 - Revision 1 records the first FEAT-002 syntax, preview, browser, and static assertion checks.
+- Revision 2 records the corrected plain-script bootstrap, custom menu interaction, and autoplay limitation.
