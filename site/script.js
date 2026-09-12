@@ -307,6 +307,45 @@ function setupMusicPlayer() {
   playAudio({fallbackToMuted: true});
 }
 
+function setupCursorSpotlight() {
+  const spotlightQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!spotlightQuery.matches || reducedMotionQuery.matches) return;
+
+  const root = document.body;
+  let pendingPoint = null;
+  let frameId = 0;
+
+  function clearSpotlight() {
+    pendingPoint = null;
+    if (frameId) cancelAnimationFrame(frameId);
+    frameId = 0;
+    root.style.setProperty('--spotlight-x', '-30rem');
+    root.style.setProperty('--spotlight-y', '-30rem');
+    root.classList.remove('cursor-spotlight-active');
+  }
+
+  function renderSpotlight() {
+    frameId = 0;
+    if (!pendingPoint || reducedMotionQuery.matches) return clearSpotlight();
+    root.style.setProperty('--spotlight-x', `${pendingPoint.x}px`);
+    root.style.setProperty('--spotlight-y', `${pendingPoint.y}px`);
+    root.classList.add('cursor-spotlight-active');
+    pendingPoint = null;
+  }
+
+  document.addEventListener('pointermove', (event) => {
+    if (event.pointerType && event.pointerType !== 'mouse' && event.pointerType !== 'pen') return clearSpotlight();
+    pendingPoint = {x: event.clientX, y: event.clientY};
+    if (!frameId) frameId = requestAnimationFrame(renderSpotlight);
+  }, {passive: true});
+  document.documentElement.addEventListener('pointerleave', clearSpotlight);
+  window.addEventListener('blur', clearSpotlight);
+  reducedMotionQuery.addEventListener('change', (event) => {
+    if (event.matches) clearSpotlight();
+  });
+}
+
 // Browser bootstrap
 if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -314,6 +353,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   const hammerAsset = document.getElementById('hammer-asset');
 
   setupMusicPlayer();
+  setupCursorSpotlight();
 
   // If user prefers reduced motion on initial load, do not activate intro
   if (reducedMotionQuery.matches) {

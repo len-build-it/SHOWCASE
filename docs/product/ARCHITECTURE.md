@@ -1,9 +1,9 @@
 # Architecture: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:54:50+08:00
-Revision: 5
-Status: Approved by Len on 2026-09-12T20:46:17+08:00
+Updated: 2026-09-12T21:15:35+08:00
+Revision: 6
+Status: Approved by Len through FEAT-003 approval on 2026-09-12
 
 ## Observed facts and assumptions
 
@@ -78,6 +78,8 @@ The browser bootstrap uses a plain script so static hosting and direct browser l
 The architecture intentionally avoids animation libraries and new dependencies unless a measured implementation problem requires Len's authorization.
 
 The privacy page stays static and factual, with no form, analytics, account, or tracking implementation.
+
+The cursor spotlight uses one CSS radial glow controlled by the latest fine-pointer coordinates and a single requestAnimationFrame update path; it is disabled for coarse pointers and reduced-motion users.
 
 ## Open questions and approval
 

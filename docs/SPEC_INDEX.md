@@ -14,9 +14,12 @@ Revision: 8
 | Feature | FEAT-002 | [Glass music widget](features/FEAT-002-music-widget.md) | 2 | Approved; correction complete | Same document revision 1 |
 | Plan | FEAT-002-PLAN | [implementation plan](plans/FEAT-002-implementation.md) | 4 | Complete | Same document revision 3 |
 | Evidence | FEAT-002-EVIDENCE | [verification record](evidence/FEAT-002-verification.md) | 2 | Correction verification recorded; physical pending | Same document revision 1 |
-| Handoff | HANDOFF | [current handoff](../HANDOFF.md) | 8 | FEAT-001 shell refinement and FEAT-002 correction complete | Same document revision 7 |
+| Feature | FEAT-003 | [Cursor grid spotlight](features/FEAT-003-cursor-spotlight.md) | 1 | Complete; physical pending | New |
+| Plan | FEAT-003-PLAN | [implementation plan](plans/FEAT-003-implementation.md) | 1 | Complete | New |
+| Evidence | FEAT-003-EVIDENCE | [verification record](evidence/FEAT-003-verification.md) | 1 | Verification recorded; physical pending | New |
+| Handoff | HANDOFF | [current handoff](../HANDOFF.md) | 10 | FEAT-003 cursor spotlight complete | Same document revision 9 |
 
-Current implementation plan: FEAT-002 plan revision 4 for the glass music widget correction.
+Current implementation plan: FEAT-003 plan revision 1 for the cursor grid spotlight.
 
 Len approved revision 2 specifications and implementation plan in chat on 2026-09-11T21:20:30+08:00.
 

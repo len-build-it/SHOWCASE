@@ -16,6 +16,8 @@
 
   --spine-left: 2.5rem;
   --content-max-width: 1100px;
+  --spotlight-x: -30rem;
+  --spotlight-y: -30rem;
 }
 
 /* Box sizing and baseline */
@@ -42,11 +44,34 @@ body {
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
     linear-gradient(var(--grid-line-dense) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line-dense) 1px, transparent 1px);
-  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
-  background-position: -1px -1px;
+    linear-gradient(90deg, var(--grid-line-dense) 1px, transparent 1px),
+    radial-gradient(circle 220px at var(--spotlight-x) var(--spotlight-y), rgba(128, 227, 224, 0.1), rgba(99, 159, 232, 0.08) 42%, transparent 72%);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px, auto;
+  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px, center;
   position: relative;
   overflow-x: hidden;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background-image:
+      linear-gradient(rgba(128, 227, 224, 0.22) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(128, 227, 224, 0.22) 1px, transparent 1px);
+    background-size: 80px 80px;
+    background-position: -1px -1px;
+    -webkit-mask-image: radial-gradient(circle 220px at var(--spotlight-x) var(--spotlight-y), #000 0%, transparent 72%);
+    mask-image: radial-gradient(circle 220px at var(--spotlight-x) var(--spotlight-y), #000 0%, transparent 72%);
+  }
+
+  body.cursor-spotlight-active::before {
+    opacity: 1;
+  }
 }
 
 /* Body lock during intro */

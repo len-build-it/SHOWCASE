@@ -1,9 +1,9 @@
 # Product overview: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:54:50+08:00
-Revision: 5
-Status: Approved by Len on 2026-09-12T20:46:17+08:00
+Updated: 2026-09-12T21:15:35+08:00
+Revision: 6
+Status: Approved by Len through FEAT-003 approval on 2026-09-12
 
 ## Purpose and users
 
@@ -21,6 +21,7 @@ Success means a visitor understands Len's builder identity, remembers the openin
 - A non-skippable minimal hammer line-art intro that makes the site feel like it is being built as it loads.
 - A glass music widget using Len's supplied local MP3 playlist, with graceful behavior when autoplay is blocked or audio is unavailable.
 - A blueprint-inspired project section that starts as an honest work-in-progress state and later becomes a set of project chapters.
+- A no-trace cursor spotlight that makes the nearby blueprint grid respond on fine-pointer devices.
 - A short section describing Len's building method and problem-solving principles.
 - A final contact section that points visitors toward the next build.
 - A minimal site shell with no persistent header navigation and a footer Privacy Policy link.
