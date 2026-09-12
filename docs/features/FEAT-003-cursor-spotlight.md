@@ -1,23 +1,23 @@
 # FEAT-003: Cursor grid spotlight
 
 Created: 2026-09-12T21:04:59+08:00
-Updated: 2026-09-12T21:04:59+08:00
-Revision: 1
-Status: Approved by Len through chat approval "approve spotlight" on 2026-09-12
+Updated: 2026-09-12T21:53:24+08:00
+Revision: 2
+Status: Approved by Len through the 2026-09-12 request to remove the filled spotlight and strengthen the neon-blue line effect
 
 ## Purpose and success
 
 Visitors using a mouse or trackpad should feel the blueprint respond to their cursor without adding visual noise or leaving a trail.
 
-The feature succeeds when the current pointer location produces a soft local glow that makes the nearby background grid easier to see, follows pointer movement immediately, and disappears when the pointer leaves the page.
+The feature succeeds when the current pointer location produces a strong neon-blue highlight on nearby grid lines only, follows pointer movement immediately, and disappears when the pointer leaves the page.
 
 ## Scope and non-goals
 
 This delivery adds one live cursor spotlight to the existing story page background.
 
-It uses the existing cyan and drafting-blue palette, does not move the grid, and keeps only the latest pointer position.
+It uses a strong neon-blue line treatment, does not move the grid, and keeps only the latest pointer position.
 
-It excludes trails, particles, canvas rendering, pointer icons, persistence, settings, touch behavior, and new dependencies.
+It excludes filled cursor-area glow, trails, particles, canvas rendering, pointer icons, persistence, settings, touch behavior, and new dependencies.
 
 ## User flows
 
@@ -25,7 +25,7 @@ It excludes trails, particles, canvas rendering, pointer icons, persistence, set
 
 The visitor moves a mouse or trackpad over the page.
 
-The current location shows a soft approximately 220px spotlight that brightens the nearby grid and follows the pointer without lag or accumulated marks.
+The current location brightens nearby major and dense grid lines in a strong approximately 220px neon-blue area and follows the pointer without lag or accumulated marks.
 
 When the pointer leaves the document, the spotlight disappears.
 
@@ -43,8 +43,8 @@ If scripting is disabled, the page remains readable with the original grid.
 
 | ID | Required behavior | Observable pass/fail criterion |
 | --- | --- | --- |
-| REQ-001 | Show a local spotlight at the current fine-pointer position. | Moving a mouse or trackpad over the story visibly brightens a single soft area around the pointer. |
-| REQ-002 | Brighten the nearby blueprint grid without moving it. | Existing grid lines remain aligned and stationary while the area under the pointer becomes more visible. |
+| REQ-001 | Show a localized neon-blue grid-line highlight at the current fine-pointer position. | Moving a mouse or trackpad over the story visibly brightens nearby major and dense grid lines in a single responsive area. |
+| REQ-002 | Brighten only the nearby blueprint grid lines without moving them. | Existing grid lines remain aligned and stationary, with no filled spotlight or cursor-area wash. |
 | REQ-003 | Avoid traces and stale state. | The effect contains only the latest pointer location and clears on pointer leave; no trail or persistent mark remains. |
 | REQ-004 | Stay responsive. | Pointer updates are coalesced through one animation-frame callback and do not create one render loop per event. |
 | REQ-005 | Preserve accessible and low-motion behavior. | The feature is inactive for coarse pointers and `prefers-reduced-motion: reduce`; keyboard reading order and controls remain unchanged. |
@@ -70,22 +70,29 @@ Preserve the existing blueprint palette, responsive layout, focus styles, intro 
 ### Confirmed requirements
 
 - Len approved the cursor spotlight direction with "approve spotlight" on 2026-09-12.
-- The spotlight should light the background grid and cursor area, remain responsive, and leave no trace.
+- Len requested the filled spotlight be removed and the line-only effect be stronger and neon blue on 2026-09-12.
+- The highlight should remain responsive and leave no trace.
 
 ### Approved decisions
 
-- Use the existing cyan and drafting-blue colors.
+- Use strong neon-blue grid-line colors for the transient overlay.
 - Enable only for fine pointers.
 - Disable for reduced-motion users.
-- Use a soft approximately 220px glow with immediate position updates.
+- Use an approximately 220px masked grid-line overlay with immediate position updates.
 
 ### Assumptions
 
 - The page viewport is the correct coordinate space because the effect is fixed to the visible background.
-- The existing browser support target handles CSS custom properties, radial gradients, `pointermove`, and `requestAnimationFrame`.
+- The existing browser support target handles CSS custom properties, masks, radial gradients, `pointermove`, and `requestAnimationFrame`.
+- The radial gradient is used only as the line-overlay mask, not as a filled background glow.
 
 ## Open questions and readiness
 
 No blocking questions remain for this delivery.
 
-The feature is ready for its one implementation phase.
+The line-only neon refinement is ready for verification and handoff on its isolated branch.
+
+## Revision history
+
+- Revision 1 defined the responsive no-trace cursor grid spotlight.
+- Revision 2 removes the filled spotlight and specifies the stronger neon-blue grid-line-only treatment requested on 2026-09-12.

@@ -44,10 +44,9 @@ body {
     linear-gradient(var(--grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
     linear-gradient(var(--grid-line-dense) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line-dense) 1px, transparent 1px),
-    radial-gradient(circle 220px at var(--spotlight-x) var(--spotlight-y), rgba(128, 227, 224, 0.1), rgba(99, 159, 232, 0.08) 42%, transparent 72%);
-  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px, auto;
-  background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px, center;
+    linear-gradient(90deg, var(--grid-line-dense) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
+  background-position: -1px -1px;
   position: relative;
   overflow-x: hidden;
 }
@@ -61,10 +60,13 @@ body {
     pointer-events: none;
     opacity: 0;
     background-image:
-      linear-gradient(rgba(128, 227, 224, 0.22) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(128, 227, 224, 0.22) 1px, transparent 1px);
-    background-size: 80px 80px;
+      linear-gradient(rgba(41, 181, 255, 0.82) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(41, 181, 255, 0.82) 1px, transparent 1px),
+      linear-gradient(rgba(41, 181, 255, 0.38) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(41, 181, 255, 0.38) 1px, transparent 1px);
+    background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
     background-position: -1px -1px;
+    filter: drop-shadow(0 0 5px rgba(41, 181, 255, 0.78));
     -webkit-mask-image: radial-gradient(circle 220px at var(--spotlight-x) var(--spotlight-y), #000 0%, transparent 72%);
     mask-image: radial-gradient(circle 220px at var(--spotlight-x) var(--spotlight-y), #000 0%, transparent 72%);
   }

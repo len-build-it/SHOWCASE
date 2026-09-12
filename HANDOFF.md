@@ -1,10 +1,10 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T21:29:22+08:00
-Revision: 11
-State: FEAT-002 reference UI refinement complete; FEAT-003 cursor spotlight complete
-Feature: FEAT-002 / FEAT-003
+Updated: 2026-09-12T21:53:24+08:00
+Revision: 12
+State: FEAT-002 reference UI refinement complete; FEAT-003 line-only neon refinement verified on codex/neon-grid-lines with commit pending
+Feature: FEAT-003
 
 ## Read first
 
@@ -36,22 +36,22 @@ Reread these files and inspect actual Git status before acting.
 | FEAT-002 feature spec | Revision 2 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
 | FEAT-002 implementation plan | Revision 3 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
 | FEAT-001 shell refinement | Revision 3 feature spec and Revision 5 product and architecture documents | User request "Remove the header thingy and for the footer just include a privacy policy" on 2026-09-12 |
-| FEAT-003 feature spec and plan | Revision 1 | User message "approve spotlight" on 2026-09-12 |
+| FEAT-003 feature spec and plan | Revision 2 | User request to remove the filled spotlight and strengthen the line-only neon-blue effect on 2026-09-12 |
 | FEAT-002 reference UI refinement | Revision 3 feature spec and Revision 5 implementation plan | User request for the supplied music-player reference UI on 2026-09-12T21:13:53+08:00 |
 
-Allowed work: Commit the already-implemented and verified FEAT-002 reference UI refinement; no new behavior beyond its revision 3 scope.
+Allowed work: Review and commit the already-implemented FEAT-003 line-only neon refinement on `codex/neon-grid-lines`; do not add behavior beyond revision 2.
 
-Allowed implementation phases: FEAT-002 reference UI refinement.
+Allowed implementation phases: FEAT-003 line-only neon refinement.
 
 Architecture and behavior changes return to Len; this handoff cannot override the linked specs.
 
 ## Progress and working tree
 
-FEAT-003 specification and one-phase implementation plan are approved through Len's chat approval "approve spotlight" on 2026-09-12.
+FEAT-003 specification revision 2 and its one-phase refinement plan are approved by the user's direct 2026-09-12 request.
 
-FEAT-003 implementation and verification are complete at the checkpoint commit.
+FEAT-003 implementation and verification are complete in the working tree on `codex/neon-grid-lines`; no commit was created because the receiving model will handle the branch handoff.
 
-FEAT-003 static checks passed, existing intro and music checks passed, and the available browser confirmed the fine-pointer spotlight state and no horizontal overflow.
+FEAT-003 static checks passed, existing intro and music checks passed, and the available browser confirmed the fine-pointer line-only neon-blue state and no horizontal overflow.
 
 Direct touch, coarse-pointer, reduced-motion, and pointer-leave browser scenarios remain pending because the available embedded browser did not expose those emulations during this run.
 
@@ -101,7 +101,7 @@ All Phase 1 verification gates passed:
 
 ## Next action
 
-The shell refinement is ready for its checkpoint commit; future work is limited to physical-device review, project content, and any separately approved changes.
+Review the isolated branch diff, then create the FEAT-003 checkpoint commit if the receiving model accepts the handoff.
 
 ## Revision history
 
@@ -113,3 +113,4 @@ The shell refinement is ready for its checkpoint commit; future work is limited 
 - Revision 6 records the user-reported static controls, corrected plain-script bootstrap, custom track menu, autoplay fallback, and pending fix checkpoint.
 - Revision 7 records the completed fix checkpoint and the embedded-browser autoplay limitation.
 - Revision 8 records the removed persistent header, Privacy Policy footer link, privacy-page route, and browser verification.
+- Revision 12 records the isolated `codex/neon-grid-lines` branch, removal of the filled spotlight, stronger neon-blue line-only behavior, verification, and intentionally pending commit.
