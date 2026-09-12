@@ -1,8 +1,8 @@
 # Verification: FEAT-002
 
 Created: 2026-09-12T20:21:59+08:00
-Updated: 2026-09-12T20:46:17+08:00
-Revision: 2
+Updated: 2026-09-12T21:13:53+08:00
+Revision: 3
 
 | Requirement / phase | Check or scenario | Environment and conditions | Actual result | When run | Evidence / limitations |
 | --- | --- | --- | --- | --- | --- |
@@ -19,6 +19,8 @@ Revision: 2
 | Corrected bootstrap | Reload after changing the browser script from module to plain script. | Codex in-app browser, local preview. | Passed: the widget initialized, controls changed state, and no console warnings or errors were captured. | 2026-09-12T20:46:00+08:00 | Direct `file://` navigation is blocked by the browser test policy, so HTTP preview was used. |
 | Widget-styled menu | Open the track button and select `Mister Prime`. | Same browser and local preview. | Passed: the glass listbox opened above the widget, exposed five options, closed after selection, and status changed to `Playing Mister Prime.`. | 2026-09-12T20:46:00+08:00 | Keyboard arrow traversal is implemented but not separately exercised here. |
 | Sound-enable gesture | Start muted playback with `Play music`, then activate `Enable sound`. | Same browser and local preview. | Passed: playback began after the gesture, the button changed to `Enable sound`, and the gesture changed the mute state to unmuted with `Pause music`. | 2026-09-12T20:46:00+08:00 | The embedded browser blocked both audible and muted autoplay on fresh load; this is recorded as a browser limitation, not treated as successful autoplay. |
+| Reference-style layout | Inspect the rendered widget after the intro releases. | Codex in-app browser, local preview, viewport approximately 806 CSS px wide. | Passed: compact horizontal glass card shows centered title and artist, waveform signal at the upper right, elapsed and remaining time, progress range, favorite control, and icon-first playback controls. | 2026-09-12T21:10:00+08:00 | Background color was not evaluated against the supplied reference. |
+| Reference-style controls | Open the track picker, choose `Mister Prime`, favorite the track, seek with the progress range, and activate `Enable sound`. | Same browser and local MP3 playlist. | Passed: selection updates metadata and status, favorite changes to pressed state, progress responds to keyboard input, and playback changes to `Pause music` with a playing status. | 2026-09-12T21:10:00+08:00 | Favorite state is intentionally session-local and is not persisted. |
 
 ## Limitations and pending evidence
 
@@ -31,3 +33,4 @@ Revision: 2
 
 - Revision 1 records the first FEAT-002 syntax, preview, browser, and static assertion checks.
 - Revision 2 records the corrected plain-script bootstrap, custom menu interaction, and autoplay limitation.
+- Revision 3 records the reference-style layout, seek control, metadata, favorite action, and browser interaction checks.

@@ -1,21 +1,21 @@
 # FEAT-002: Glass music widget
 
 Created: 2026-09-12T20:15:05+08:00
-Updated: 2026-09-12T20:46:17+08:00
-Revision: 2
-Status: Approved by Len on 2026-09-12T20:46:17+08:00
+Updated: 2026-09-12T21:13:53+08:00
+Revision: 3
+Status: Approved by Len through the reference-UI implementation request on 2026-09-12T21:13:53+08:00
 
 ## Purpose and success
 
 Visitors should be able to hear a small background soundtrack and change it without leaving the Living Blueprint story.
 
-The feature succeeds when the widget attempts playback without delaying the page, clearly recovers from blocked or failed autoplay, lets visitors change tracks with keyboard-usable controls, and shows a restrained audio-reactive waveform.
+The feature succeeds when the widget attempts playback without delaying the page, clearly recovers from blocked or failed autoplay, lets visitors change tracks with keyboard-usable controls, and presents a compact player surface with a progress scrubber and restrained audio-reactive waveform.
 
 ## Scope and non-goals
 
 This delivery adds one fixed glassmorphism music widget to the existing static page.
 
-It includes the five local MP3 files in `music/`, a default track, playlist order, previous/play-next/mute controls, a track selector, automatic advance with playlist wraparound, and a waveform driven by the Web Audio analyser when available.
+It includes the five local MP3 files in `music/`, a default track, playlist order, previous/play-next/mute/favorite controls, a track selector, a progress scrubber with elapsed and remaining time, automatic advance with playlist wraparound, and a waveform driven by the Web Audio analyser when available.
 
 The widget is fixed at the lower right on desktop and becomes a bottom dock on narrow screens.
 
@@ -35,7 +35,7 @@ If the browser blocks autoplay, including browsers that block silent autoplay, t
 
 ### Playback
 
-The visitor can play or pause, mute or unmute, choose a track from the widget-styled listbox, and move to the previous or next track.
+The visitor can play or pause, mute or unmute, favorite or unfavorite the current track, choose a track from the widget-styled listbox, seek within the current track, and move to the previous or next track.
 
 When a track ends, playback advances to the next track and wraps to the first track after the last one.
 
@@ -62,10 +62,10 @@ With reduced motion enabled, the waveform is static and no widget animation runs
 | REQ-001 | The widget is present without blocking the story. | A fresh page load shows the widget independently of the intro, and the five chapters remain readable and navigable if audio does not start. |
 | REQ-002 | The supplied tracks are available locally. | The selector exposes all five MP3 files from `music/` with readable names and no external media request. |
 | REQ-003 | Autoplay failure is recoverable. | A rejected or unavailable `audio.play()` leaves the page usable and exposes a clear enable-sound or play action that retries playback; silent autoplay is used when permitted. |
-| REQ-004 | Basic music-player controls work. | Play/pause, previous, next, mute/unmute, and the widget-styled accessible listbox update the native audio state and visible labels. |
+| REQ-004 | Basic music-player controls work. | Play/pause, previous, next, mute/unmute, favorite, progress seeking, and the widget-styled accessible listbox update native audio state and visible labels. |
 | REQ-005 | The playlist advances automatically. | When the current track emits `ended`, the next local track is selected and played, wrapping from the final track to the first. |
 | REQ-006 | The waveform reflects playback when possible. | While audio plays with analyser support, waveform bars update from analyser data; without analyser support they use the CSS fallback. |
-| REQ-007 | The widget is responsive and visually integrated. | Desktop places it at the lower right; narrow layouts use a bottom dock; the panel uses existing blueprint colors, translucent glass, blur, and readable contrast. |
+| REQ-007 | The widget is responsive and visually integrated. | Desktop places it at the lower right; narrow layouts use a bottom dock; the panel uses the reference's compact horizontal hierarchy, translucent glass, blur, and readable contrast. |
 | REQ-008 | Accessibility and reduced motion are preserved. | Controls are keyboard usable with visible focus, status is announced politely, no control is smaller than the project target, and reduced motion freezes the waveform. |
 | REQ-009 | Media failures fail open. | A missing or unsupported MP3 reports an error in the widget while the intro, chapter links, and page reading order continue to work. |
 
@@ -75,7 +75,7 @@ The feature has no durable data or external API.
 
 The playlist is a small static array of local relative asset paths in `site/script.js`.
 
-The page uses one native `<audio>` element, one widget-styled button/listbox wrapper, and one `AudioContext` analyser connection created only when needed.
+The page uses one native `<audio>` element, one widget-styled button/listbox wrapper, one native range input for seeking, and one `AudioContext` analyser connection created only when needed.
 
 ## Quality constraints
 
@@ -106,6 +106,8 @@ The page uses one native `<audio>` element, one widget-styled button/listbox wra
 - Use the built-in Web Audio analyser for the waveform with a CSS fallback.
 - Use lower-right desktop placement and a bottom mobile dock.
 - Advance through the playlist and wrap around at the end.
+- Use centered title and artist metadata, a time range slider, and icon-first playback controls based on the supplied reference image.
+- Keep the track selector available from the title area, favorite state local to the current page, and status messaging visually hidden but available to assistive technology.
 
 ### Assumptions
 
@@ -122,9 +124,10 @@ Len's original approval is recorded against revision 1 by the message `okay proc
 
 Len requested and approved this correction through the message `The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site` on 2026-09-12.
 
-The feature is ready for implementation and verification.
+The feature is ready for implementation and verification of the reference-style UI.
 
 ## Revision history
 
 - Revision 1 defines the first approved music widget delivery from the supplied local MP3 set.
 - Revision 2 adds a widget-styled accessible listbox, a plain-script bootstrap, and a muted autoplay fallback for browsers that permit it.
+- Revision 3 adds the reference-style player hierarchy, progress seeking, metadata, and a working favorite control.

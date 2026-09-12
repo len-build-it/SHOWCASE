@@ -119,18 +119,23 @@ function setupMusicPlayer() {
   const trackValue = document.getElementById('music-track-value');
   const trackMenu = document.getElementById('music-track-menu');
   const trackOptions = [...document.querySelectorAll('#music-track-menu [role="option"]')];
+  const progress = document.getElementById('music-progress');
+  const elapsedTime = document.getElementById('music-time-elapsed');
+  const remainingTime = document.getElementById('music-time-remaining');
   const playButton = document.getElementById('music-play');
   const previousButton = document.getElementById('music-previous');
   const nextButton = document.getElementById('music-next');
   const muteButton = document.getElementById('music-mute');
+  const favoriteButton = document.getElementById('music-favorite');
   const status = document.getElementById('music-status');
   const waveBars = [...document.querySelectorAll('#music-wave span')];
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  if (!widget || !audio || !trackToggle || !trackValue || !trackMenu || !playButton || !status) return;
+  if (!widget || !audio || !trackToggle || !trackValue || !trackMenu || !progress || !elapsedTime || !remainingTime || !playButton || !status) return;
 
   audio.muted = false;
   let currentIndex = 0;
+  let isFavorite = false;
   let audioContext;
   let analyser;
   let source;
@@ -141,15 +146,40 @@ function setupMusicPlayer() {
     status.textContent = message;
   }
 
+  function formatTime(seconds) {
+    const safeSeconds = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
+    const minutes = Math.floor(safeSeconds / 60);
+    const remainder = String(safeSeconds % 60).padStart(2, '0');
+    return `${minutes}:${remainder}`;
+  }
+
+  function syncProgress() {
+    const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
+    const currentTime = Number.isFinite(audio.currentTime) ? audio.currentTime : 0;
+    progress.max = String(duration);
+    progress.value = String(Math.min(currentTime, duration || currentTime));
+    progress.disabled = duration <= 0;
+    elapsedTime.textContent = formatTime(currentTime);
+    remainingTime.textContent = `-${formatTime(Math.max(0, duration - currentTime))}`;
+  }
+
   function syncControls() {
     const isPlaying = !audio.paused;
     const needsSoundGesture = isPlaying && audio.muted;
+    const playSymbol = playButton.querySelector('[data-play-symbol]');
+    const playLabel = playButton.querySelector('[data-play-label]');
+    const muteLabel = muteButton?.querySelector('[data-mute-label]');
     widget.classList.toggle('is-playing', isPlaying);
-    playButton.textContent = needsSoundGesture ? 'Enable sound' : isPlaying ? 'Pause' : 'Play';
-    playButton.setAttribute('aria-label', needsSoundGesture ? 'Enable sound' : isPlaying ? 'Pause music' : 'Play music');
-    muteButton.textContent = audio.muted ? 'Unmute' : 'Mute';
+    const playText = needsSoundGesture ? 'Enable sound' : isPlaying ? 'Pause music' : 'Play music';
+    playButton.setAttribute('aria-label', playText);
+    if (playSymbol) playSymbol.textContent = isPlaying && !needsSoundGesture ? '⏸' : '▶';
+    if (playLabel) playLabel.textContent = playText;
+    if (muteLabel) muteLabel.textContent = audio.muted ? 'Unmute music' : 'Mute music';
+    muteButton.classList.toggle('is-muted', audio.muted);
     muteButton.setAttribute('aria-label', audio.muted ? 'Unmute music' : 'Mute music');
     muteButton.setAttribute('aria-pressed', String(audio.muted));
+    favoriteButton?.classList.toggle('is-favorite', isFavorite);
+    favoriteButton?.setAttribute('aria-pressed', String(isFavorite));
   }
 
   function stopWave() {
@@ -228,6 +258,7 @@ function setupMusicPlayer() {
     });
     audio.src = MUSIC_TRACKS[currentIndex].src;
     audio.load();
+    syncProgress();
     setStatus(`${MUSIC_TRACKS[currentIndex].title} selected.`);
     if (shouldPlay) playAudio();
   }
@@ -251,6 +282,15 @@ function setupMusicPlayer() {
     audio.muted = !audio.muted;
     syncControls();
     setStatus(audio.muted ? 'Music muted.' : 'Music unmuted.');
+  });
+  favoriteButton?.addEventListener('click', () => {
+    isFavorite = !isFavorite;
+    syncControls();
+    setStatus(isFavorite ? 'Track added to favorites.' : 'Track removed from favorites.');
+  });
+  progress.addEventListener('input', () => {
+    if (!progress.disabled) audio.currentTime = Number(progress.value);
+    syncProgress();
   });
   function closeTrackMenu() {
     trackMenu.hidden = true;
@@ -291,6 +331,9 @@ function setupMusicPlayer() {
     stopWave();
     syncControls();
   });
+  audio.addEventListener('timeupdate', syncProgress);
+  audio.addEventListener('durationchange', syncProgress);
+  audio.addEventListener('loadedmetadata', syncProgress);
   audio.addEventListener('ended', () => loadTrack(currentIndex + 1, true));
   audio.addEventListener('error', () => {
     stopWave();
@@ -303,8 +346,48 @@ function setupMusicPlayer() {
   });
 
   syncControls();
+  syncProgress();
   setStatus('Starting soundtrack...');
   playAudio({fallbackToMuted: true});
+}
+
+function setupCursorSpotlight() {
+  const spotlightQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!spotlightQuery.matches || reducedMotionQuery.matches) return;
+
+  const root = document.body;
+  let pendingPoint = null;
+  let frameId = 0;
+
+  function clearSpotlight() {
+    pendingPoint = null;
+    if (frameId) cancelAnimationFrame(frameId);
+    frameId = 0;
+    root.style.setProperty('--spotlight-x', '-30rem');
+    root.style.setProperty('--spotlight-y', '-30rem');
+    root.classList.remove('cursor-spotlight-active');
+  }
+
+  function renderSpotlight() {
+    frameId = 0;
+    if (!pendingPoint || reducedMotionQuery.matches) return clearSpotlight();
+    root.style.setProperty('--spotlight-x', `${pendingPoint.x}px`);
+    root.style.setProperty('--spotlight-y', `${pendingPoint.y}px`);
+    root.classList.add('cursor-spotlight-active');
+    pendingPoint = null;
+  }
+
+  document.addEventListener('pointermove', (event) => {
+    if (event.pointerType && event.pointerType !== 'mouse' && event.pointerType !== 'pen') return clearSpotlight();
+    pendingPoint = {x: event.clientX, y: event.clientY};
+    if (!frameId) frameId = requestAnimationFrame(renderSpotlight);
+  }, {passive: true});
+  document.documentElement.addEventListener('pointerleave', clearSpotlight);
+  window.addEventListener('blur', clearSpotlight);
+  reducedMotionQuery.addEventListener('change', (event) => {
+    if (event.matches) clearSpotlight();
+  });
 }
 
 // Browser bootstrap
@@ -314,6 +397,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   const hammerAsset = document.getElementById('hammer-asset');
 
   setupMusicPlayer();
+  setupCursorSpotlight();
 
   // If user prefers reduced motion on initial load, do not activate intro
   if (reducedMotionQuery.matches) {

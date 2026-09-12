@@ -1,9 +1,9 @@
 # Architecture: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:46:17+08:00
-Revision: 4
-Status: Approved by Len on 2026-09-12T20:46:17+08:00
+Updated: 2026-09-12T21:15:35+08:00
+Revision: 6
+Status: Approved by Len through FEAT-003 approval on 2026-09-12
 
 ## Observed facts and assumptions
 
@@ -19,9 +19,9 @@ The current branch is `master`, Node v24.14.0 is available, and `.gitignore` exc
 
 ## Components, boundaries, and flows
 
-The proposed implementation is a static site with one HTML entry point, one stylesheet, and one small browser script.
+The implementation is a static site with a story HTML entry point, a Privacy Policy page, one stylesheet, and one small browser script.
 
-Authored files live in tracked paths `site/index.html`, `site/styles.css`, `site/script.js`, and `site/assets/hammer.svg`.
+Authored files live in tracked paths `site/index.html`, `site/privacy.html`, `site/styles.css`, `site/script.js`, and `site/assets/hammer.svg`.
 
 No compilation or generated output is needed for the local skeleton.
 
@@ -40,6 +40,8 @@ The project area uses truthful placeholder content until project material is sup
 The music delivery uses one native HTML audio element and independent playback state; it never gates the intro or content release.
 
 The widget uses a static local playlist, native audio events, a widget-styled accessible listbox, and a browser-built Web Audio analyser with a CSS fallback for the waveform.
+
+The story page has no persistent header or chapter navigation, and `site/index.html` links to the static `site/privacy.html` page from its footer.
 
 Playback controls, autoplay fallback, and media error handling are specified in [FEAT-002](../features/FEAT-002-music-widget.md).
 
@@ -75,6 +77,10 @@ The browser bootstrap uses a plain script so static hosting and direct browser l
 
 The architecture intentionally avoids animation libraries and new dependencies unless a measured implementation problem requires Len's authorization.
 
+The privacy page stays static and factual, with no form, analytics, account, or tracking implementation.
+
+The cursor spotlight uses one CSS radial glow controlled by the latest fine-pointer coordinates and a single requestAnimationFrame update path; it is disabled for coarse pointers and reduced-motion users.
+
 ## Open questions and approval
 
 The source paths, preview approach, recovery mechanism, and local music boundary above are concrete proposals for this revision.
@@ -85,6 +91,8 @@ Len approved architecture revision 2 in chat with "I approve this revisions. Pro
 
 Len approved the revision 3 local music update through the 2026-09-12 implementation message recorded in FEAT-002.
 
+Len approved the revision 5 site-shell refinement through the direct implementation request on 2026-09-12T20:54:50+08:00.
+
 Revisit the static approach only if later approved interactions require capabilities beyond a static page.
 
 ## Revision history
@@ -93,3 +101,4 @@ Revisit the static approach only if later approved interactions require capabili
 - Revision 2 specifies tracked source files, a bounded preview helper, progressive enhancement and recovery, and deferred audio ownership.
 - Revision 3 records the approved native local-playlist audio boundary and analyser fallback.
 - Revision 4 records the plain-script bootstrap, custom listbox, and muted autoplay fallback.
+- Revision 5 records the separate Privacy Policy page and removal of persistent site navigation.
