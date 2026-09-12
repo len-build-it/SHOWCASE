@@ -1,10 +1,10 @@
 # Implementation Plan: FEAT-002 Glass music widget
 
 Created: 2026-09-12T20:15:05+08:00
-Updated: 2026-09-12T21:13:53+08:00
-Revision: 5
-Status: Complete; reference UI refinement implemented and verified
-Feature spec and revision: [FEAT-002 revision 3](../features/FEAT-002-music-widget.md)
+Updated: 2026-09-12T22:05:00+08:00
+Revision: 6
+Status: Complete; compact widget refinement implemented and verified
+Feature spec and revision: [FEAT-002 revision 4](../features/FEAT-002-music-widget.md)
 Approved baseline and architecture revisions: [Product revision 4](../product/OVERVIEW.md), [Architecture revision 4](../product/ARCHITECTURE.md)
 Len's chat approval: `okay proceed with implementing, also make sure to make changes on the documentation` on 2026-09-12 after the round-1 proposals.
 
@@ -31,6 +31,7 @@ State: Complete
 - [x] Update product, architecture, index, handoff, and verification records.
 - [x] Repair the browser bootstrap, autoplay fallback, and widget-styled track menu after user verification.
 - [x] Reshape the widget around the reference hierarchy with centered metadata, progress seeking, icon controls, and a functional favorite action.
+- [x] Tighten the card dimensions, move mute to the lower-right control slot, and add an upward-opening picker with a drag-handle fallback.
 
 ### Verification
 
@@ -41,6 +42,7 @@ State: Complete
 - [x] Browser scenarios verify autoplay fallback, controls, track selection, waveform structure, responsive desktop placement, and no horizontal overflow in the available browser.
 - [x] Browser scenarios verify the corrected plain-script bootstrap, custom listbox open/select behavior, and sound-enable gesture.
 - [x] Browser scenarios verify track selection, favorite state, progress control, and the reference-style player layout.
+- [x] Browser scenarios verify the compact dimensions, lower-right mute placement, and upward picker interaction.
 - [x] Evidence is recorded in `docs/evidence/FEAT-002-verification.md`; visual screenshot inspected in the browser session.
 
 ### Review and checkpoint
