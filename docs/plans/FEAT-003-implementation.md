@@ -1,11 +1,11 @@
 # Implementation Plan: FEAT-003 Cursor grid spotlight
 
 Created: 2026-09-12T21:04:59+08:00
-Updated: 2026-09-12T21:53:24+08:00
-Revision: 2
+Updated: 2026-09-12T22:38:23+08:00
+Revision: 3
 
 Status: Complete in working tree; commit pending
-Feature spec and revision: [FEAT-003 revision 2](../features/FEAT-003-cursor-spotlight.md)
+Feature spec and revision: [FEAT-003 revision 3](../features/FEAT-003-cursor-spotlight.md)
 Approved baseline and architecture revisions: [Product revision 6](../product/OVERVIEW.md), [Architecture revision 6](../product/ARCHITECTURE.md)
 Len's chat approval: "approve spotlight" on 2026-09-12
 Target branch: codex/neon-grid-lines
@@ -35,6 +35,7 @@ State: Complete
 - [x] Use the local preview in a browser to confirm movement and no horizontal overflow; record pointer-leave and preference limitations.
 - [x] Record actual results in `docs/evidence/FEAT-003-verification.md`.
 - [x] Confirm the overlay contains no filled cursor-area background glow.
+- [x] Reduce the line-highlight mask radius from 220px to 110px.
 
 ### Review and checkpoint
 

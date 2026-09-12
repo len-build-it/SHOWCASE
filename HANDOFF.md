@@ -1,9 +1,9 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T22:29:56+08:00
-Revision: 13
-State: FEAT-002 compact widget refinement complete; FEAT-003 line-only neon refinement verified on codex/neon-grid-lines with commit pending
+Updated: 2026-09-12T22:38:23+08:00
+Revision: 14
+State: FEAT-002 compact widget refinement complete; FEAT-003 narrower line-only neon refinement implemented on master
 Feature: FEAT-003
 
 ## Read first
@@ -36,20 +36,20 @@ Reread these files and inspect actual Git status before acting.
 | FEAT-002 feature spec | Revision 4 | User request for the compact centered player, lower-right sound control, and upward drawer on 2026-09-12 |
 | FEAT-002 implementation plan | Revision 6 | User request for the compact centered player, lower-right sound control, and upward drawer on 2026-09-12 |
 | FEAT-001 shell refinement | Revision 3 feature spec and Revision 5 product and architecture documents | User request "Remove the header thingy and for the footer just include a privacy policy" on 2026-09-12 |
-| FEAT-003 feature spec and plan | Revision 2 | User request to remove the filled spotlight and strengthen the line-only neon-blue effect on 2026-09-12 |
+| FEAT-003 feature spec and plan | Revision 3 | User request to make the neon-blue line highlight 50% less wide on 2026-09-12 |
 | FEAT-002 compact widget refinement | Revision 4 feature spec and Revision 6 implementation plan | User request for the compact centered player, lower-right sound control, and upward drawer on 2026-09-12 |
 
-Allowed work: Review and commit the already-implemented FEAT-003 line-only neon refinement on `codex/neon-grid-lines`; do not add behavior beyond revision 2.
+Allowed work: Verify and commit the narrower FEAT-003 line-only neon refinement on `master`; do not add behavior beyond revision 3.
 
-Allowed implementation phases: FEAT-003 line-only neon refinement.
+Allowed implementation phases: FEAT-003 narrower line-only neon refinement.
 
 Architecture and behavior changes return to Len; this handoff cannot override the linked specs.
 
 ## Progress and working tree
 
-FEAT-003 specification revision 2 and its one-phase refinement plan are approved by the user's direct 2026-09-12 request.
+FEAT-003 specification revision 3 and its narrower one-phase refinement plan are approved by the user's direct 2026-09-12 request.
 
-FEAT-003 implementation and verification are complete in the working tree on `codex/neon-grid-lines`; no commit was created because the receiving model will handle the branch handoff.
+FEAT-003 line-highlight narrowing is implemented on `master`; browser visual recheck is pending.
 
 FEAT-003 static checks passed, existing intro and music checks passed, and the available browser confirmed the fine-pointer line-only neon-blue state and no horizontal overflow.
 
@@ -102,7 +102,7 @@ All Phase 1 verification gates passed:
 
 ## Next action
 
-Review the isolated branch diff, then create the FEAT-003 checkpoint commit if the receiving model accepts the handoff.
+Run the browser visual recheck for the narrower line highlight, then record the result and create its checkpoint commit.
 
 ## Revision history
 
@@ -116,3 +116,4 @@ Review the isolated branch diff, then create the FEAT-003 checkpoint commit if t
 - Revision 8 records the removed persistent header, Privacy Policy footer link, privacy-page route, and browser verification.
 - Revision 12 records the isolated `codex/neon-grid-lines` branch, removal of the filled spotlight, stronger neon-blue line-only behavior, verification, and intentionally pending commit.
 - Revision 13 records the current-master integration worktree, compact music-widget layout and drawer verification, and the separate FEAT-003 branch state.
+- Revision 14 records the requested reduction of the FEAT-003 highlight diameter from 220px to 110px.

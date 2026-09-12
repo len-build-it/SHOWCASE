@@ -1,9 +1,9 @@
 # FEAT-003: Cursor grid spotlight
 
 Created: 2026-09-12T21:04:59+08:00
-Updated: 2026-09-12T21:53:24+08:00
-Revision: 2
-Status: Approved by Len through the 2026-09-12 request to remove the filled spotlight and strengthen the neon-blue line effect
+Updated: 2026-09-12T22:38:23+08:00
+Revision: 3
+Status: Approved by Len through the 2026-09-12 request to make the neon-blue line highlight 50% less wide
 
 ## Purpose and success
 
@@ -25,7 +25,7 @@ It excludes filled cursor-area glow, trails, particles, canvas rendering, pointe
 
 The visitor moves a mouse or trackpad over the page.
 
-The current location brightens nearby major and dense grid lines in a strong approximately 220px neon-blue area and follows the pointer without lag or accumulated marks.
+The current location brightens nearby major and dense grid lines in a strong approximately 110px-radius neon-blue area and follows the pointer without lag or accumulated marks.
 
 When the pointer leaves the document, the spotlight disappears.
 
@@ -71,6 +71,7 @@ Preserve the existing blueprint palette, responsive layout, focus styles, intro 
 
 - Len approved the cursor spotlight direction with "approve spotlight" on 2026-09-12.
 - Len requested the filled spotlight be removed and the line-only effect be stronger and neon blue on 2026-09-12.
+- Len requested the neon-blue line highlight be 50% less wide on 2026-09-12.
 - The highlight should remain responsive and leave no trace.
 
 ### Approved decisions
@@ -78,7 +79,7 @@ Preserve the existing blueprint palette, responsive layout, focus styles, intro 
 - Use strong neon-blue grid-line colors for the transient overlay.
 - Enable only for fine pointers.
 - Disable for reduced-motion users.
-- Use an approximately 220px masked grid-line overlay with immediate position updates.
+- Use an approximately 110px-radius masked grid-line overlay with immediate position updates.
 
 ### Assumptions
 
@@ -96,3 +97,4 @@ The line-only neon refinement is ready for verification and handoff on its isola
 
 - Revision 1 defined the responsive no-trace cursor grid spotlight.
 - Revision 2 removes the filled spotlight and specifies the stronger neon-blue grid-line-only treatment requested on 2026-09-12.
+- Revision 3 halves the highlight diameter by reducing its mask radius from 220px to 110px.

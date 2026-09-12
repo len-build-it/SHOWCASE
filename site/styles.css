@@ -67,8 +67,8 @@ body {
     background-size: 80px 80px, 80px 80px, 16px 16px, 16px 16px;
     background-position: -1px -1px;
     filter: drop-shadow(0 0 5px rgba(41, 181, 255, 0.78));
-    -webkit-mask-image: radial-gradient(circle 220px at var(--spotlight-x) var(--spotlight-y), #000 0%, transparent 72%);
-    mask-image: radial-gradient(circle 220px at var(--spotlight-x) var(--spotlight-y), #000 0%, transparent 72%);
+    -webkit-mask-image: radial-gradient(circle 110px at var(--spotlight-x) var(--spotlight-y), #000 0%, transparent 72%);
+    mask-image: radial-gradient(circle 110px at var(--spotlight-x) var(--spotlight-y), #000 0%, transparent 72%);
   }
 
   body.cursor-spotlight-active::before {
