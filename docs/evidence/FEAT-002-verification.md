@@ -1,8 +1,8 @@
 # Verification: FEAT-002
 
 Created: 2026-09-12T20:21:59+08:00
-Updated: 2026-09-12T21:13:53+08:00
-Revision: 3
+Updated: 2026-09-12T22:29:56+08:00
+Revision: 4
 
 | Requirement / phase | Check or scenario | Environment and conditions | Actual result | When run | Evidence / limitations |
 | --- | --- | --- | --- | --- | --- |
@@ -21,6 +21,10 @@ Revision: 3
 | Sound-enable gesture | Start muted playback with `Play music`, then activate `Enable sound`. | Same browser and local preview. | Passed: playback began after the gesture, the button changed to `Enable sound`, and the gesture changed the mute state to unmuted with `Pause music`. | 2026-09-12T20:46:00+08:00 | The embedded browser blocked both audible and muted autoplay on fresh load; this is recorded as a browser limitation, not treated as successful autoplay. |
 | Reference-style layout | Inspect the rendered widget after the intro releases. | Codex in-app browser, local preview, viewport approximately 806 CSS px wide. | Passed: compact horizontal glass card shows centered title and artist, waveform signal at the upper right, elapsed and remaining time, progress range, favorite control, and icon-first playback controls. | 2026-09-12T21:10:00+08:00 | Background color was not evaluated against the supplied reference. |
 | Reference-style controls | Open the track picker, choose `Mister Prime`, favorite the track, seek with the progress range, and activate `Enable sound`. | Same browser and local MP3 playlist. | Passed: selection updates metadata and status, favorite changes to pressed state, progress responds to keyboard input, and playback changes to `Pause music` with a playing status. | 2026-09-12T21:10:00+08:00 | Favorite state is intentionally session-local and is not persisted. |
+| Compact placement and spacing | Inspect the rendered player after the intro releases. | Codex in-app browser, integrated preview at `http://127.0.0.1:4175/`, viewport `1280x720`. | Passed: the widget measured approximately `480x164`, metadata was centered, and mute was positioned at the lower-right of the control row. | 2026-09-12T22:29:56+08:00 | Visual screenshot inspected; the spotlight implementation from current `master` remains present. |
+| Upward drawer | Drag upward from the handle, then select `Mister Prime`. | Same integrated preview and browser. | Passed: the picker opened above the card, exposed all five tracks, and selection updated the title. | 2026-09-12T22:29:56+08:00 | Browser gesture evidence is from the in-app preview viewport. |
+| Lower-right sound control | Activate the sound control from the playback row. | Same integrated preview and local MP3. | Passed: `Unmute music` changed to `Mute music`, playback continued, and the live status announced `Music unmuted.`. | 2026-09-12T22:29:56+08:00 | Speaker output remains environment dependent. |
+| Browser console | Inspect warning and error logs after the interaction scenarios. | Same integrated preview and browser. | Passed: no warning or error entries were captured. | 2026-09-12T22:29:56+08:00 | Browser environment only. |
 
 ## Limitations and pending evidence
 
@@ -34,3 +38,4 @@ Revision: 3
 - Revision 1 records the first FEAT-002 syntax, preview, browser, and static assertion checks.
 - Revision 2 records the corrected plain-script bootstrap, custom menu interaction, and autoplay limitation.
 - Revision 3 records the reference-style layout, seek control, metadata, favorite action, and browser interaction checks.
+- Revision 4 records the compact dimensions, lower-right mute placement, upward drag drawer, integrated-master verification, and clean console run.

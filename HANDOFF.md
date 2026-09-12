@@ -1,9 +1,9 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T21:53:24+08:00
-Revision: 12
-State: FEAT-002 reference UI refinement complete; FEAT-003 line-only neon refinement verified on codex/neon-grid-lines with commit pending
+Updated: 2026-09-12T22:29:56+08:00
+Revision: 13
+State: FEAT-002 compact widget refinement complete; FEAT-003 line-only neon refinement verified on codex/neon-grid-lines with commit pending
 Feature: FEAT-003
 
 ## Read first
@@ -33,11 +33,11 @@ Reread these files and inspect actual Git status before acting.
 | Architecture | Revision 3 | User message "okay proceed with implementing, also make sure to make changes on the documentation" on 2026-09-12 after the six proposed behavior decisions |
 | Feature spec | Revision 2 | User message "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00 |
 | Implementation plan | Revision 2 / 3 | User message "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00 |
-| FEAT-002 feature spec | Revision 2 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
-| FEAT-002 implementation plan | Revision 3 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
+| FEAT-002 feature spec | Revision 4 | User request for the compact centered player, lower-right sound control, and upward drawer on 2026-09-12 |
+| FEAT-002 implementation plan | Revision 6 | User request for the compact centered player, lower-right sound control, and upward drawer on 2026-09-12 |
 | FEAT-001 shell refinement | Revision 3 feature spec and Revision 5 product and architecture documents | User request "Remove the header thingy and for the footer just include a privacy policy" on 2026-09-12 |
 | FEAT-003 feature spec and plan | Revision 2 | User request to remove the filled spotlight and strengthen the line-only neon-blue effect on 2026-09-12 |
-| FEAT-002 reference UI refinement | Revision 3 feature spec and Revision 5 implementation plan | User request for the supplied music-player reference UI on 2026-09-12T21:13:53+08:00 |
+| FEAT-002 compact widget refinement | Revision 4 feature spec and Revision 6 implementation plan | User request for the compact centered player, lower-right sound control, and upward drawer on 2026-09-12 |
 
 Allowed work: Review and commit the already-implemented FEAT-003 line-only neon refinement on `codex/neon-grid-lines`; do not add behavior beyond revision 2.
 
@@ -55,7 +55,7 @@ FEAT-003 static checks passed, existing intro and music checks passed, and the a
 
 Direct touch, coarse-pointer, reduced-motion, and pointer-leave browser scenarios remain pending because the available embedded browser did not expose those emulations during this run.
 
-FEAT-002 reference UI refinement is complete in the working tree with passing music, intro, syntax, and diff checks.
+FEAT-002 compact widget refinement is complete in the integration worktree with passing music, intro, syntax, browser interaction, and diff checks.
 
 FEAT-001 Phase 1 implementation and verification are complete at commit `c142ebd`.
 
@@ -91,6 +91,7 @@ All Phase 1 verification gates passed:
    - `mobile-story.png`: Single-column mobile view with stacked headers and responsive typography.
    - `reduced-motion.png`: Immediate static reveal bypassing animation.
 7. Browser verification confirmed the footer Privacy Policy link opens `privacy.html`, its policy sections are readable, and its back link returns to the story page.
+8. Integrated preview verification measured the widget at approximately `480x164`, confirmed centered metadata, lower-right mute, upward drag selection, and no browser warnings or errors while preserving FEAT-003 spotlight code.
 
 ## Blockers and attempts
 
@@ -114,3 +115,4 @@ Review the isolated branch diff, then create the FEAT-003 checkpoint commit if t
 - Revision 7 records the completed fix checkpoint and the embedded-browser autoplay limitation.
 - Revision 8 records the removed persistent header, Privacy Policy footer link, privacy-page route, and browser verification.
 - Revision 12 records the isolated `codex/neon-grid-lines` branch, removal of the filled spotlight, stronger neon-blue line-only behavior, verification, and intentionally pending commit.
+- Revision 13 records the current-master integration worktree, compact music-widget layout and drawer verification, and the separate FEAT-003 branch state.

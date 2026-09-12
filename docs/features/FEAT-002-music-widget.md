@@ -1,9 +1,9 @@
 # FEAT-002: Glass music widget
 
 Created: 2026-09-12T20:15:05+08:00
-Updated: 2026-09-12T21:13:53+08:00
-Revision: 3
-Status: Approved by Len through the reference-UI implementation request on 2026-09-12T21:13:53+08:00
+Updated: 2026-09-12T22:05:00+08:00
+Revision: 4
+Status: Approved by Len through the compact-widget refinement request on 2026-09-12T22:05:00+08:00
 
 ## Purpose and success
 
@@ -18,6 +18,10 @@ This delivery adds one fixed glassmorphism music widget to the existing static p
 It includes the five local MP3 files in `music/`, a default track, playlist order, previous/play-next/mute/favorite controls, a track selector, a progress scrubber with elapsed and remaining time, automatic advance with playlist wraparound, and a waveform driven by the Web Audio analyser when available.
 
 The widget is fixed at the lower right on desktop and becomes a bottom dock on narrow screens.
+
+The desktop card stays compact, keeps the title and artist centered, and places mute in the lower-right control slot.
+
+The track list opens upward from a visible grab handle, with a click and keyboard fallback for visitors who do not drag.
 
 It excludes volume control, shuffle, track history, persistence, streaming, metadata extraction, downloads, analytics, and any new dependency.
 
@@ -65,7 +69,7 @@ With reduced motion enabled, the waveform is static and no widget animation runs
 | REQ-004 | Basic music-player controls work. | Play/pause, previous, next, mute/unmute, favorite, progress seeking, and the widget-styled accessible listbox update native audio state and visible labels. |
 | REQ-005 | The playlist advances automatically. | When the current track emits `ended`, the next local track is selected and played, wrapping from the final track to the first. |
 | REQ-006 | The waveform reflects playback when possible. | While audio plays with analyser support, waveform bars update from analyser data; without analyser support they use the CSS fallback. |
-| REQ-007 | The widget is responsive and visually integrated. | Desktop places it at the lower right; narrow layouts use a bottom dock; the panel uses the reference's compact horizontal hierarchy, translucent glass, blur, and readable contrast. |
+| REQ-007 | The widget is responsive and visually integrated. | Desktop places a compact card at the lower right; narrow layouts use a bottom dock; the panel uses the reference's centered hierarchy, translucent glass, blur, and readable contrast; the track list opens upward from the grab handle. |
 | REQ-008 | Accessibility and reduced motion are preserved. | Controls are keyboard usable with visible focus, status is announced politely, no control is smaller than the project target, and reduced motion freezes the waveform. |
 | REQ-009 | Media failures fail open. | A missing or unsupported MP3 reports an error in the widget while the intro, chapter links, and page reading order continue to work. |
 
@@ -107,6 +111,7 @@ The page uses one native `<audio>` element, one widget-styled button/listbox wra
 - Use lower-right desktop placement and a bottom mobile dock.
 - Advance through the playlist and wrap around at the end.
 - Use centered title and artist metadata, a time range slider, and icon-first playback controls based on the supplied reference image.
+- Keep the mute control at the lower-right edge of the playback controls and open the track picker upward from a drag handle.
 - Keep the track selector available from the title area, favorite state local to the current page, and status messaging visually hidden but available to assistive technology.
 
 ### Assumptions
@@ -124,10 +129,11 @@ Len's original approval is recorded against revision 1 by the message `okay proc
 
 Len requested and approved this correction through the message `The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site` on 2026-09-12.
 
-The feature is ready for implementation and verification of the reference-style UI.
+The compact-widget refinement is implemented and verified in the integration worktree.
 
 ## Revision history
 
 - Revision 1 defines the first approved music widget delivery from the supplied local MP3 set.
 - Revision 2 adds a widget-styled accessible listbox, a plain-script bootstrap, and a muted autoplay fallback for browsers that permit it.
 - Revision 3 adds the reference-style player hierarchy, progress seeking, metadata, and a working favorite control.
+- Revision 4 makes the player compact, centers its spacing, moves mute to the lower-right controls, and adds the upward-opening drag handle picker.

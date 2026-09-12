@@ -35,6 +35,9 @@
     <div class="music-wave" id="music-wave" aria-hidden="true">
       <span></span><span></span><span></span><span></span><span></span><span></span>
     </div>
+    <button class="music-drag-handle" id="music-drag-handle" type="button" aria-label="Open soundtrack list">
+      <span aria-hidden="true"></span>
+    </button>
     <div class="music-widget-header">
       <div class="music-select-wrap">
         <button class="music-track" id="music-track-toggle" type="button" aria-label="Choose soundtrack" aria-haspopup="listbox" aria-expanded="false">
@@ -49,15 +52,6 @@
           <li role="option" aria-selected="false" data-value="4" tabindex="-1">All Wave Control</li>
         </ul>
       </div>
-      <button class="music-icon-button" id="music-mute" type="button" aria-label="Mute music" aria-pressed="false">
-        <span class="music-volume-symbol" aria-hidden="true">
-          <svg class="music-volume-icon" viewBox="0 0 24 24" focusable="false">
-            <path d="M4 10v4h3l4 3V7l-4 3H4Z"></path>
-            <path d="M15 9.5c1.3 1.3 1.3 3.7 0 5M17.5 7c2.7 2.7 2.7 6.3 0 9"></path>
-          </svg>
-        </span>
-        <span class="sr-only" data-mute-label>Mute music</span>
-      </button>
     </div>
     <div class="music-progress-row">
       <span class="music-time" id="music-time-elapsed">0:00</span>
@@ -77,6 +71,15 @@
       </button>
       <button class="music-icon-button" id="music-next" type="button" aria-label="Next track">
         <span aria-hidden="true">⏭</span>
+      </button>
+      <button class="music-icon-button music-mute" id="music-mute" type="button" aria-label="Mute music" aria-pressed="false">
+        <span class="music-volume-symbol" aria-hidden="true">
+          <svg class="music-volume-icon" viewBox="0 0 24 24" focusable="false">
+            <path d="M4 10v4h3l4 3V7l-4 3H4Z"></path>
+            <path d="M15 9.5c1.3 1.3 1.3 3.7 0 5M17.5 7c2.7 2.7 2.7 6.3 0 9"></path>
+          </svg>
+        </span>
+        <span class="sr-only" data-mute-label>Mute music</span>
       </button>
     </div>
     <p class="music-status sr-only" id="music-status" role="status" aria-live="polite"></p>

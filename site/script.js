@@ -119,6 +119,7 @@ function setupMusicPlayer() {
   const trackValue = document.getElementById('music-track-value');
   const trackMenu = document.getElementById('music-track-menu');
   const trackOptions = [...document.querySelectorAll('#music-track-menu [role="option"]')];
+  const dragHandle = document.getElementById('music-drag-handle');
   const progress = document.getElementById('music-progress');
   const elapsedTime = document.getElementById('music-time-elapsed');
   const remainingTime = document.getElementById('music-time-remaining');
@@ -292,16 +293,59 @@ function setupMusicPlayer() {
     if (!progress.disabled) audio.currentTime = Number(progress.value);
     syncProgress();
   });
+  let menuCloseTimer;
+  function openTrackMenu() {
+    clearTimeout(menuCloseTimer);
+    trackMenu.hidden = false;
+    trackToggle.setAttribute('aria-expanded', 'true');
+    requestAnimationFrame(() => trackMenu.classList.add('is-open'));
+    trackOptions[currentIndex].focus();
+  }
+
   function closeTrackMenu() {
-    trackMenu.hidden = true;
+    trackMenu.classList.remove('is-open');
     trackToggle.setAttribute('aria-expanded', 'false');
+    clearTimeout(menuCloseTimer);
+    menuCloseTimer = setTimeout(() => {
+      trackMenu.hidden = true;
+    }, 180);
   }
 
   trackToggle.addEventListener('click', () => {
     const isOpen = !trackMenu.hidden;
-    trackMenu.hidden = isOpen;
-    trackToggle.setAttribute('aria-expanded', String(!isOpen));
-    if (!isOpen) trackOptions[currentIndex].focus();
+    if (isOpen) closeTrackMenu();
+    else openTrackMenu();
+  });
+  let dragStartY = null;
+  let skipHandleClick = false;
+  dragHandle?.addEventListener('click', () => {
+    if (skipHandleClick) {
+      skipHandleClick = false;
+      return;
+    }
+    if (trackMenu.hidden) openTrackMenu();
+    else closeTrackMenu();
+  });
+  dragHandle?.addEventListener('pointerdown', (event) => {
+    dragStartY = event.clientY;
+    dragHandle.setPointerCapture?.(event.pointerId);
+  });
+  dragHandle?.addEventListener('pointerup', (event) => {
+    if (dragStartY !== null && dragStartY - event.clientY > 24) {
+      skipHandleClick = true;
+      openTrackMenu();
+    }
+    dragStartY = null;
+    dragHandle.releasePointerCapture?.(event.pointerId);
+  });
+  dragHandle?.addEventListener('pointercancel', () => {
+    dragStartY = null;
+  });
+  dragHandle?.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      openTrackMenu();
+    }
   });
   trackOptions.forEach((option, index) => {
     option.addEventListener('click', () => {
