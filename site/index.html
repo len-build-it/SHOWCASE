@@ -30,6 +30,33 @@
     </div>
   </div>
 
+  <!-- Optional background music player; audio never gates the story. -->
+  <aside class="music-widget" id="music-widget" aria-label="Background music player">
+    <div class="music-wave" id="music-wave" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="music-widget-header">
+      <span class="music-kicker">SOUNDTRACK // FIELD NOTES</span>
+      <button class="music-icon-button" id="music-mute" type="button" aria-label="Mute music" aria-pressed="false">Mute</button>
+    </div>
+    <label class="music-track-label" for="music-track">Now playing</label>
+    <select class="music-track" id="music-track" aria-label="Choose soundtrack">
+      <option value="0">Retry Retry</option>
+      <option value="1">Mister Prime</option>
+      <option value="2">Hills Of Hell</option>
+      <option value="3">Diab-low</option>
+      <option value="4">All Wave Control</option>
+    </select>
+    <div class="music-controls" aria-label="Playback controls">
+      <button class="music-control" id="music-previous" type="button" aria-label="Previous track">Prev</button>
+      <button class="music-control music-play" id="music-play" type="button" aria-label="Enable sound">Enable sound</button>
+      <button class="music-control" id="music-next" type="button" aria-label="Next track">Next</button>
+    </div>
+    <p class="music-status" id="music-status" role="status" aria-live="polite">Soundtrack ready when you are.</p>
+    <audio class="music-audio" id="music-audio" preload="metadata" src="music/Panda%20Beats%20-%20Retry%20Retry.mp3"></audio>
+  </aside>
+
   <!-- Persistent Site Header & Navigation -->
   <header class="site-header">
     <div class="header-inner">

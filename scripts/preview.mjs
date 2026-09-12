@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const SITE_DIR = path.resolve(__dirname, '..', 'site');
+const MUSIC_DIR = path.resolve(__dirname, '..', 'music');
 const HOST = '127.0.0.1';
 const PORT = 4173;
 
@@ -21,6 +22,7 @@ const MIME_TYPES = {
   '.jpeg': 'image/jpeg',
   '.ico': 'image/x-icon',
   '.txt': 'text/plain; charset=utf-8',
+  '.mp3': 'audio/mpeg',
 };
 
 export function createPreviewServer(siteDir = SITE_DIR) {
@@ -46,14 +48,16 @@ export function createPreviewServer(siteDir = SITE_DIR) {
       pathname += 'index.html';
     }
 
-    const safePath = path.normalize(pathname).replace(/^(\.\.[/\\])+/, '');
-    const filePath = path.join(siteDir, safePath);
+    const isMusicPath = pathname.startsWith('/music/');
+    const safePath = path.normalize(isMusicPath ? pathname.slice('/music/'.length) : pathname);
+    const baseDir = isMusicPath ? MUSIC_DIR : siteDir;
+    const filePath = path.join(baseDir, safePath);
 
-    // Guard against path traversal outside site directory
+    // Guard against path traversal outside the selected asset directory.
     const resolvedPath = path.resolve(filePath);
-    const resolvedSiteDir = path.resolve(siteDir);
+    const resolvedBaseDir = path.resolve(baseDir);
 
-    if (!resolvedPath.startsWith(resolvedSiteDir + path.sep) && resolvedPath !== resolvedSiteDir) {
+    if (!resolvedPath.startsWith(resolvedBaseDir + path.sep) && resolvedPath !== resolvedBaseDir) {
       res.writeHead(403, { 'Content-Type': 'text/plain; charset=utf-8' });
       res.end('Forbidden');
       return;

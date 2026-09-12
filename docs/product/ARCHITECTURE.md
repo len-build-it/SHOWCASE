@@ -1,9 +1,9 @@
 # Architecture: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-11T20:58:55+08:00
-Revision: 2
-Status: Approved by Len on 2026-09-11T21:20:30+08:00
+Updated: 2026-09-12T20:15:05+08:00
+Revision: 3
+Status: Approved by Len on 2026-09-12T20:15:05+08:00
 
 ## Observed facts and assumptions
 
@@ -25,9 +25,9 @@ Authored files live in tracked paths `site/index.html`, `site/styles.css`, `site
 
 No compilation or generated output is needed for the local skeleton.
 
-A small development-only `scripts/preview.mjs` uses Node built-ins to serve only `site/` at `http://127.0.0.1:4173/`.
+A small development-only `scripts/preview.mjs` uses Node built-ins to serve `site/` and the root `music/` directory at `http://127.0.0.1:4173/`.
 
-It binds to loopback, rejects paths outside that directory, returns 404 for missing files, and serves correct HTML, CSS, JavaScript, and SVG content types.
+It binds to loopback, rejects paths outside those two asset directories, returns 404 for missing files, and serves correct HTML, CSS, JavaScript, SVG, and MP3 content types.
 
 This helper is not a production server and requires no package installation.
 
@@ -37,11 +37,11 @@ The page uses semantic sections for arrival, problem, build, method, and closing
 
 The project area uses truthful placeholder content until project material is supplied.
 
-The skeleton has no audio element, media request, or sound control.
+The music delivery uses one native HTML audio element and independent playback state; it never gates the intro or content release.
 
-Future audio integration uses the native HTML audio element and independent playback state; it must never gate the intro or content release.
+The widget uses a static local playlist, native audio events, and a browser-built Web Audio analyser with a CSS fallback for the waveform.
 
-Playback controls, autoplay fallback, and error handling remain deferred together with the MP3.
+Playback controls, autoplay fallback, and media error handling are specified in [FEAT-002](../features/FEAT-002-music-widget.md).
 
 No backend, database, authentication, CMS, analytics, or third-party runtime dependency is required for the skeleton.
 
@@ -67,7 +67,7 @@ The static story remains readable with JavaScript disabled or blocked, and late 
 
 In a background tab, timers may be delayed; on returning to the foreground, compare elapsed time and release an expired intro immediately.
 
-Future audio behavior is proposed in FEAT-001/REQ-005 and FEAT-001/REQ-006 and is not implemented or validated by the silent phase.
+The silent skeleton's deferred audio requirements remain historical scope boundaries; the approved implementation is tracked and verified under FEAT-002.
 
 Project content remains out of the skeleton to avoid inventing details and to keep the later content phase independently reviewable.
 
@@ -75,11 +75,13 @@ The architecture intentionally avoids animation libraries and new dependencies u
 
 ## Open questions and approval
 
-The source paths, preview approach, and recovery mechanism above are concrete proposals for this revision.
+The source paths, preview approach, recovery mechanism, and local music boundary above are concrete proposals for this revision.
 
 The hammer is a local vector illustration using the [feature storyboard](../features/FEAT-001-living-blueprint.md), with no external asset or library prerequisite.
 
 Len approved architecture revision 2 in chat with "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00.
+
+Len approved the revision 3 local music update through the 2026-09-12 implementation message recorded in FEAT-002.
 
 Revisit the static approach only if later approved interactions require capabilities beyond a static page.
 
@@ -87,3 +89,4 @@ Revisit the static approach only if later approved interactions require capabili
 
 - Revision 1 proposed a static page but left source paths, preview setup, and intro recovery unresolved.
 - Revision 2 specifies tracked source files, a bounded preview helper, progressive enhancement and recovery, and deferred audio ownership.
+- Revision 3 records the approved native local-playlist audio boundary and analyser fallback.
