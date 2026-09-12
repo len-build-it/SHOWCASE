@@ -1,17 +1,19 @@
 # Implementation Plan: Living Blueprint portfolio skeleton
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-11T21:31:00+08:00
-Revision: 3
-Status: Approved; Phase 1 implemented and verified
-Feature spec and revision: [FEAT-001 revision 2](../features/FEAT-001-living-blueprint.md)
-Product and architecture proposals: [Overview revision 2](../product/OVERVIEW.md) and [architecture revision 2](../product/ARCHITECTURE.md).
+Updated: 2026-09-12T20:54:50+08:00
+Revision: 4
+Status: Approved; Phase 1 and shell refinement implemented and verified
+Feature spec and revision: [FEAT-001 revision 3](../features/FEAT-001-living-blueprint.md)
+Product and architecture proposals: [Overview revision 5](../product/OVERVIEW.md) and [architecture revision 5](../product/ARCHITECTURE.md).
 Len's chat approval: Approved by Len in chat with "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00.
+
+Len's shell-refinement approval: Direct request to remove the header and leave a Privacy Policy footer link on 2026-09-12T20:54:50+08:00.
 Target branch: `master` confirmed on 2026-09-11.
 
 ## Scope
 
-This plan covers FEAT-001/REQ-001 through FEAT-001/REQ-004 and FEAT-001/REQ-007 through FEAT-001/REQ-012.
+This plan covers FEAT-001/REQ-001 through FEAT-001/REQ-004 and FEAT-001/REQ-007 through FEAT-001/REQ-013.
 
 FEAT-001/REQ-005 and FEAT-001/REQ-006, including audio controls, autoplay handling, looping, and failed-playback tests, are deferred together.
 
@@ -21,7 +23,7 @@ Existing untracked project instruction files under `.agents/`, plus `AGENTS.md`,
 
 ## Concrete implementation inputs
 
-Use tracked authored files `site/index.html`, `site/styles.css`, `site/script.js`, and `site/assets/hammer.svg`.
+Use tracked authored files `site/index.html`, `site/privacy.html`, `site/styles.css`, `site/script.js`, and `site/assets/hammer.svg`.
 
 Use the proposed chapter copy, contact destinations, palette, composition, and hammer storyboard in the feature spec.
 
@@ -100,6 +102,27 @@ Audio integration and all verification for FEAT-001/REQ-005 and FEAT-001/REQ-006
 
 Completion of this phase means the silent skeleton is complete, not that all FEAT-001 requirements have passed.
 
+## Phase 2: Minimal site shell
+
+Requirements: FEAT-001/REQ-009 and FEAT-001/REQ-013
+State: Implemented and verified
+
+### Tasks
+
+- [x] Remove the persistent site header and chapter navigation without changing the narrative reading order.
+- [x] Replace the colophon footer with a Privacy Policy link.
+- [x] Add the static Privacy Policy page and a back link to the portfolio.
+- [x] Update the relevant product, architecture, feature, evidence, index, and handoff documents.
+
+### Verification
+
+- [x] Open the Privacy Policy link in the local preview and confirm the policy page renders.
+- [x] Follow the policy page back link and confirm it returns to the story page.
+- [x] Inspect the story accessibility tree and confirm no site-wide header or navigation remains.
+- [x] Run syntax, static music, preview, and Git diff checks before the shell refinement checkpoint.
+
+The music widget header and controls remain unchanged by this phase.
+
 Project chapters start only after Len supplies project materials and approves a project-content revision.
 
 ## Recovery
@@ -115,3 +138,4 @@ Interrupted or failing work remains uncommitted and the phase remains incomplete
 - Revision 1 proposed one phase but targeted ignored output paths and mixed deferred audio checks into the skeleton.
 - Revision 2 retains one phase and adds concrete tracked files, preview and release checks, storyboard inputs, failure scenarios, screenshot evidence, and corrected approval attribution.
 - Revision 3 records Len's chat approval, completed Phase 1 tasks and verifications, and prepares for the phase checkpoint commit.
+- Revision 4 records the approved minimal site-shell refinement and Privacy Policy route verification.

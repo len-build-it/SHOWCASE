@@ -1,8 +1,8 @@
 # Product overview: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:46:17+08:00
-Revision: 4
+Updated: 2026-09-12T20:54:50+08:00
+Revision: 5
 Status: Approved by Len on 2026-09-12T20:46:17+08:00
 
 ## Purpose and users
@@ -23,6 +23,7 @@ Success means a visitor understands Len's builder identity, remembers the openin
 - A blueprint-inspired project section that starts as an honest work-in-progress state and later becomes a set of project chapters.
 - A short section describing Len's building method and problem-solving principles.
 - A final contact section that points visitors toward the next build.
+- A minimal site shell with no persistent header navigation and a footer Privacy Policy link.
 - Responsive, keyboard-usable, readable, reduced-motion, and sound-optional behavior.
 
 ## Scope and non-goals
@@ -36,6 +37,8 @@ The first implementation does not include real project entries, detailed case st
 The site does not attempt to replace the existing employer-focused portfolio.
 
 The site does not use generic AI portfolio conventions such as gradient blobs, bento grids, stacked glass cards, fake dashboards, or decorative AI sparkle motifs.
+
+The main page keeps site chrome minimal by omitting a persistent header and exposing the Privacy Policy from the footer.
 
 ## Open questions and approval
 
@@ -53,9 +56,12 @@ Len approved the exact revision 2 documents and implementation in chat with "I a
 
 Len approved the revision 3 audio-scope update through the 2026-09-12 implementation message recorded in FEAT-002.
 
+Len requested the revision 5 site-shell refinement through the direct implementation request on 2026-09-12T20:54:50+08:00.
+
 ## Revision history
 
 - Revision 1 recorded the discussion baseline and incorrectly marked the written document approved.
 - Revision 2 corrects the approval attribution and distinguishes the silent skeleton from future music delivery.
 - Revision 3 links the approved local music widget delivery and records that the supplied playlist is available.
 - Revision 4 records the corrected autoplay fallback and browser-compatible widget bootstrap.
+- Revision 5 records the simplified site shell and footer Privacy Policy link.

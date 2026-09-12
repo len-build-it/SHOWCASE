@@ -1,8 +1,8 @@
 # Verification: FEAT-001
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-11T21:31:00+08:00
-Revision: 3
+Updated: 2026-09-12T20:54:50+08:00
+Revision: 4
 
 | Requirement / phase | Check or scenario | Environment and conditions | Actual result | When run | Evidence / limitations |
 | --- | --- | --- | --- | --- | --- |
@@ -14,6 +14,7 @@ Revision: 3
 | Phase 1: Intro release logic assertions | `node scripts/check-intro.mjs`. | Local Node.js v24.14.0 mock virtual timer test. | Passed: all 7 assertions passed (normal completion at 3500ms, 5000ms hard deadline recovery, idempotency, reduced motion instant bypass, motion change mid-sequence, asset error recovery, background tab return expired). | 2026-09-11T21:25:19+08:00 | Verifies controller state transitions in isolation. |
 | Phase 1: Bounded preview helper | `scripts/preview.mjs` serving `site/` on loopback `http://127.0.0.1:4173/`. | Windows PowerShell `Invoke-WebRequest`. | Passed: 200 OK with correct MIME types for `/`, `styles.css`, `script.js`, `assets/hammer.svg`; 404 returned for traversal attempts `/AGENTS.md`, `/%2e%2e/AGENTS.md`, and missing assets. | 2026-09-11T21:23:10+08:00 | Confirms local serving and path traversal rejection. |
 | Phase 1: Browser scenarios S1-S8 | Headless Microsoft Edge v138.0.3351.121 running against local preview server. | Windows 10/11 desktop, viewports 1440x900, 768x1024, 390x844, 320x568. | Passed: standard intro plays 3.5s sequence; 5 narrative chapters render; reduced motion reveals static page immediately; recovery operates on asset failure and 5s timeout; responsive viewports show zero overflow; zero audio elements present; native anchor scrolling functional. | 2026-09-11T21:29:18+08:00 | Captured screenshots: [hammer-impact.png](FEAT-001/hammer-impact.png), [desktop-story.png](FEAT-001/desktop-story.png), [mobile-story.png](FEAT-001/mobile-story.png), [reduced-motion.png](FEAT-001/reduced-motion.png). |
+| Shell refinement and privacy route | Open the footer Privacy Policy link, inspect the accessibility tree, and follow the back link. | Microsoft Edge in the local loopback preview at `http://127.0.0.1:4173/`. | Passed: the story page has no site-wide header or navigation; the footer exposes only Privacy Policy; `privacy.html` renders its policy sections and returns to `index.html`. | 2026-09-12T20:54:50+08:00 | Music widget header and controls remain intentionally unchanged. |
 | Deferred / REQ-005 and REQ-006 | Playback controls, blocked autoplay, media failure, and loop completion with Len's MP3. | No player or supplied MP3. | Not run; deferred. | - | No claim of audio robustness from the silent skeleton. |
 | Physical devices | Len's phone/tablet review. | Physical-device access belongs to Len. | Not run. | - | Browser viewport emulation cannot establish physical-device behavior. |
 
@@ -22,3 +23,4 @@ Revision: 3
 - Revision 1 held a single placeholder for unrun implementation checks.
 - Revision 2 distinguishes planning observations, skeleton verification, deferred audio, and physical-device evidence.
 - Revision 3 records completed Phase 1 syntax checks, unit assertions, preview server tests, Edge scenario runs, and screenshot artifacts.
+- Revision 4 records the simplified site shell and Privacy Policy route verification.

@@ -1,9 +1,9 @@
 # FEAT-001: Living Blueprint portfolio skeleton
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-11T20:58:55+08:00
-Revision: 2
-Status: Approved by Len on 2026-09-11T21:20:30+08:00
+Updated: 2026-09-12T20:54:50+08:00
+Revision: 3
+Status: Approved by Len through direct implementation request on 2026-09-12T20:54:50+08:00
 
 ## Purpose and success
 
@@ -13,7 +13,9 @@ The feature succeeds when the page opens as a short illustrated build sequence, 
 
 ## Scope and non-goals
 
-The current delivery includes the silent one-page narrative skeleton, the non-skippable hammer intro, the blueprint visual system, the work-in-progress project state, and responsive accessibility behavior.
+The current delivery includes the one-page narrative skeleton, the non-skippable hammer intro, the blueprint visual system, the work-in-progress project state, responsive accessibility behavior, and a minimal site shell.
+
+The site shell has no persistent header or chapter navigation, and its footer exposes a Privacy Policy page.
 
 REQ-005 and REQ-006 remain reserved for future audio integration, including controls and failure handling; neither is a current-phase completion criterion.
 
@@ -63,7 +65,7 @@ Proposed closing links are "Email Len" to `mailto:olajaylenardangelo@gmail.com`,
 
 These destinations were observed on Len's reference portfolio during this conversation; their inclusion is proposed for revision 2 review.
 
-A compact text navigation links to the five anchors after the intro; use native scrolling with no forced snapping or scroll hijacking.
+The story remains available in native document reading order with the skip link, and uses no persistent site-wide chapter navigation.
 
 ### Positive visual requirements
 
@@ -133,6 +135,7 @@ No browser permission is requested.
 | REQ-010 | Intro failure never permanently conceals content. | Block the script, fail the hammer asset, or suppress the normal completion event; content is immediately available without scripting and becomes accessible within five seconds of activation for an interrupted active intro, including release of input and scroll restrictions. |
 | REQ-011 | The skeleton is honestly silent. | Initial load and all interactions make no audio request, expose no sound control, and remain usable without an MP3. |
 | REQ-012 | Chapter motion preserves normal reading and navigation. | Connection lines reveal at most once per chapter, headings and text never depend on a reveal callback, the document uses native scrolling, and same-page links reach their named sections. |
+| REQ-013 | The site provides a minimal privacy notice. | The footer contains a working Privacy Policy link, the policy page states the current static-site data practices, and its back link returns to the portfolio. |
 
 ## Data and interfaces
 
@@ -187,8 +190,11 @@ Len approved feature spec FEAT-001 revision 2 in chat with "I approve this revis
 
 Future music delivery still requires the supplied MP3 and approval of the deferred audio behavior; future project stories require actual project material.
 
+The site shell refinement is approved through Len's direct request to remove the persistent header and leave only a Privacy Policy link in the footer.
+
 ## Revision history
 
 - Revision 1 recorded the initial skeleton but mixed deferred audio checks into its scope and left visual outcomes, recovery, and copy underdefined.
 - Revision 2 adds the storyboard and proposed copy, positive visual criteria, fail-open behavior, explicit delivery ownership, and concrete accessibility scenarios.
 - REQ-001 through REQ-009 retain their identities; local IDs now use the `REQ-NNN` form, with `FEAT-001/REQ-NNN` retained for cross-document references.
+- Revision 3 records the simplified site shell, Privacy Policy page, and REQ-013 acceptance criteria.

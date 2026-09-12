@@ -462,71 +462,6 @@ body.intro-locked {
   pointer-events: none !important;
 }
 
-/* Header & Navigation */
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background-color: rgba(11, 23, 38, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 0.875rem 1.5rem;
-}
-
-.header-inner {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.brand-tag {
-  display: flex;
-  flex-direction: column;
-}
-
-.brand-coord {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--drafting-blue);
-  letter-spacing: 0.05em;
-}
-
-.brand-title {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--text-white);
-}
-
-.nav-list {
-  display: flex;
-  list-style: none;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-}
-
-.nav-link {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--muted-text);
-  text-decoration: none;
-  padding: 0.25rem 0.5rem;
-  border-radius: 2px;
-  border-bottom: 2px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: var(--accent-cyan);
-  border-bottom-color: var(--accent-cyan);
-}
-
 /* Main Story Flow with Continuous Blueprint Spine inside container */
 .story-container {
   max-width: var(--content-max-width);
@@ -896,42 +831,16 @@ body.intro-locked {
   transform: translateY(-2px);
 }
 
-/* Footer / Colophon */
+/* Minimal footer */
 .site-footer {
   border-top: 1px solid var(--border-subtle);
-  padding: 2rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   background-color: rgba(11, 23, 38, 0.95);
+  text-align: center;
 }
 
-.footer-inner {
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-left {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-id {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--drafting-blue);
-  letter-spacing: 0.08em;
-}
-
-.footer-copy {
-  font-size: 0.875rem;
-  color: var(--muted-text);
-}
-
-.back-to-top {
+.privacy-link,
+.privacy-back {
   font-family: var(--font-mono);
   font-size: 0.875rem;
   color: var(--accent-cyan);
@@ -939,8 +848,62 @@ body.intro-locked {
   padding: 0.25rem 0.5rem;
 }
 
-.back-to-top:hover {
+.privacy-link:hover,
+.privacy-back:hover {
   text-decoration: underline;
+}
+
+.privacy-container {
+  max-width: 720px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.privacy-back,
+.privacy-kicker,
+.privacy-updated {
+  display: inline-block;
+}
+
+.privacy-back { margin-bottom: 3rem; }
+.privacy-kicker {
+  margin-bottom: 0.75rem;
+  color: var(--drafting-blue);
+  font: 0.75rem var(--font-mono);
+  letter-spacing: 0.08em;
+}
+
+.privacy-title {
+  margin-bottom: 0.5rem;
+  color: var(--text-white);
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  line-height: 1.1;
+}
+
+.privacy-updated {
+  margin-bottom: 3rem;
+  color: var(--muted-text);
+  font: 0.8rem var(--font-mono);
+}
+
+.privacy-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed var(--border-subtle);
+}
+
+.privacy-section h2 {
+  margin-bottom: 0.75rem;
+  color: var(--accent-cyan);
+  font-size: 1.35rem;
+}
+
+.privacy-section p {
+  margin-bottom: 0.9rem;
+  color: var(--muted-text);
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 /* Responsive & Mobile Layout */
@@ -988,19 +951,6 @@ body.intro-locked {
   .hero-lead {
     font-size: 1.05rem;
     padding-left: 0.75rem;
-  }
-
-  .site-header {
-    padding: 0.75rem 1rem;
-  }
-
-  .nav-list {
-    gap: 0.5rem;
-  }
-
-  .nav-link {
-    font-size: 0.8rem;
-    padding: 0.2rem 0.4rem;
   }
 
   .blueprint-wip-frame {

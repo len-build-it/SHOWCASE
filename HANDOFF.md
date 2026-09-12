@@ -1,10 +1,10 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:46:17+08:00
-Revision: 7
-State: FEAT-001 complete; FEAT-002 correction complete
-Feature: FEAT-002
+Updated: 2026-09-12T20:54:50+08:00
+Revision: 8
+State: FEAT-001 shell refinement complete; FEAT-002 correction complete
+Feature: FEAT-001 / FEAT-002
 
 ## Read first
 
@@ -32,10 +32,11 @@ Reread these files and inspect actual Git status before acting.
 | Implementation plan | Revision 2 / 3 | User message "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00 |
 | FEAT-002 feature spec | Revision 2 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
 | FEAT-002 implementation plan | Revision 3 | User message "The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site" on 2026-09-12 |
+| FEAT-001 shell refinement | Revision 3 feature spec and Revision 5 product and architecture documents | User request "Remove the header thingy and for the footer just include a privacy policy" on 2026-09-12 |
 
-Allowed work: Execute FEAT-002 Phase 1 tasks, run verification, record evidence, and commit its Phase 1 checkpoint.
+Allowed work: Execute the approved FEAT-001 shell refinement, run verification, record evidence, and commit the reviewed paths.
 
-Allowed implementation phases: FEAT-002 Phase 1 (working local music widget).
+Allowed implementation phases: FEAT-001 shell refinement and FEAT-002 Phase 1 correction.
 
 Architecture and behavior changes return to Len; this handoff cannot override the linked specs.
 
@@ -44,6 +45,8 @@ Architecture and behavior changes return to Len; this handoff cannot override th
 FEAT-001 Phase 1 implementation and verification are complete at commit `c142ebd`.
 
 FEAT-002 base implementation is complete at the local checkpoint commit; its correction pass is complete at the local fix checkpoint commit.
+
+FEAT-001 shell refinement is complete in the working tree: the persistent site header and chapter navigation were removed, and the footer now links to `site/privacy.html`.
 
 New FEAT-002 paths include the glass widget markup and styles, the local playlist controller, the preview music route, the static music check, the feature spec, the implementation plan, and the verification record.
 
@@ -72,6 +75,7 @@ All Phase 1 verification gates passed:
    - `desktop-story.png`: Completed desktop view with aligned spine, distinct markers, and high-contrast typography.
    - `mobile-story.png`: Single-column mobile view with stacked headers and responsive typography.
    - `reduced-motion.png`: Immediate static reveal bypassing animation.
+7. Browser verification confirmed the footer Privacy Policy link opens `privacy.html`, its policy sections are readable, and its back link returns to the story page.
 
 ## Blockers and attempts
 
@@ -82,7 +86,7 @@ All Phase 1 verification gates passed:
 
 ## Next action
 
-FEAT-002 checkpoint commit `feat(portfolio): add glass music widget` is complete; future work is limited to physical-device review and project content.
+The shell refinement is ready for its checkpoint commit; future work is limited to physical-device review, project content, and any separately approved changes.
 
 ## Revision history
 
@@ -93,3 +97,4 @@ FEAT-002 checkpoint commit `feat(portfolio): add glass music widget` is complete
 - Revision 5 records FEAT-002 completion at the local checkpoint commit.
 - Revision 6 records the user-reported static controls, corrected plain-script bootstrap, custom track menu, autoplay fallback, and pending fix checkpoint.
 - Revision 7 records the completed fix checkpoint and the embedded-browser autoplay limitation.
+- Revision 8 records the removed persistent header, Privacy Policy footer link, privacy-page route, and browser verification.
