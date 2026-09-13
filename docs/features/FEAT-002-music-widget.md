@@ -1,9 +1,9 @@
 # FEAT-002: Glass music widget
 
 Created: 2026-09-12T20:15:05+08:00
-Updated: 2026-09-12T22:05:00+08:00
-Revision: 4
-Status: Approved by Len through the compact-widget refinement request on 2026-09-12T22:05:00+08:00
+Updated: 2026-09-13T08:45:19+08:00
+Revision: 5
+Status: Approved by Len through the compact-widget reduction request on 2026-09-13T08:45:19+08:00
 
 ## Purpose and success
 
@@ -19,7 +19,7 @@ It includes the five local MP3 files in `music/`, a default track, playlist orde
 
 The widget is fixed at the lower right on desktop and becomes a bottom dock on narrow screens.
 
-The desktop card stays compact, keeps the title and artist centered, and places mute in the lower-right control slot.
+The desktop card stays compact at roughly half the previous width, keeps the title and artist centered, and centers the complete control group.
 
 The track list opens upward from a visible grab handle, with a click and keyboard fallback for visitors who do not drag.
 
@@ -69,7 +69,7 @@ With reduced motion enabled, the waveform is static and no widget animation runs
 | REQ-004 | Basic music-player controls work. | Play/pause, previous, next, mute/unmute, favorite, progress seeking, and the widget-styled accessible listbox update native audio state and visible labels. |
 | REQ-005 | The playlist advances automatically. | When the current track emits `ended`, the next local track is selected and played, wrapping from the final track to the first. |
 | REQ-006 | The waveform reflects playback when possible. | While audio plays with analyser support, waveform bars update from analyser data; without analyser support they use the CSS fallback. |
-| REQ-007 | The widget is responsive and visually integrated. | Desktop places a compact card at the lower right; narrow layouts use a bottom dock; the panel uses the reference's centered hierarchy, translucent glass, blur, and readable contrast; the track list opens upward from the grab handle. |
+| REQ-007 | The widget is responsive and visually integrated. | Desktop places a roughly half-width compact card at the lower right; narrow layouts use a bottom dock; the panel uses the reference's centered hierarchy, translucent glass, blur, and readable contrast; the complete control group is centered; the track list opens upward from the grab handle. |
 | REQ-008 | Accessibility and reduced motion are preserved. | Controls are keyboard usable with visible focus, status is announced politely, no control is smaller than the project target, and reduced motion freezes the waveform. |
 | REQ-009 | Media failures fail open. | A missing or unsupported MP3 reports an error in the widget while the intro, chapter links, and page reading order continue to work. |
 
@@ -91,6 +91,7 @@ The page uses one native `<audio>` element, one widget-styled button/listbox wra
 - Preserve the existing contrast, focus, responsive viewport, and reduced-motion targets.
 - Do not request browser permissions.
 - Keep the widget compact enough that it does not obscure the primary reading column on desktop.
+- Preserve the existing accessible control hit areas while reducing desktop card width and spacing.
 
 ## Decisions and assumptions
 
@@ -125,6 +126,8 @@ The page uses one native `<audio>` element, one widget-styled button/listbox wra
 
 No blocking questions remain for this delivery.
 
+Len requested and approved the roughly half-width desktop card and centered control group through the direct request `the music player widget on the right side is still way too big, can you make it 50% smaller? and also the music control buttons are not centered` on 2026-09-13T08:45:19+08:00.
+
 Len's original approval is recorded against revision 1 by the message `okay proceed with implementing, also make sure to make changes on the documentation` on 2026-09-12.
 
 Len requested and approved this correction through the message `The buttons are fully static and doesnt actually do anything. ... most importantly it should auto play when entering the site` on 2026-09-12.
@@ -137,3 +140,4 @@ The compact-widget refinement is implemented and verified in the integration wor
 - Revision 2 adds a widget-styled accessible listbox, a plain-script bootstrap, and a muted autoplay fallback for browsers that permit it.
 - Revision 3 adds the reference-style player hierarchy, progress seeking, metadata, and a working favorite control.
 - Revision 4 makes the player compact, centers its spacing, moves mute to the lower-right controls, and adds the upward-opening drag handle picker.
+- Revision 5 halves the desktop card width, tightens its spacing, and centers all playback controls while preserving control hit areas.

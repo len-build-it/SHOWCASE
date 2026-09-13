@@ -110,8 +110,8 @@ body.intro-locked {
   right: 1.25rem;
   bottom: 1.25rem;
   z-index: 110;
-  width: min(30rem, calc(100vw - 1.5rem));
-  padding: 0.8rem 1rem 0.75rem;
+  width: min(15rem, calc(100vw - 1.5rem));
+  padding: 0.45rem 0.5rem 0.4rem;
   color: var(--text-white);
   background: rgba(242, 240, 230, 0.09);
   border: 1px solid rgba(242, 240, 230, 0.38);
@@ -127,8 +127,8 @@ body.intro-locked {
   justify-content: flex-end;
   gap: 0.12rem;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.6rem;
+  right: 0.5rem;
   height: 1.35rem;
 }
 
@@ -163,7 +163,7 @@ body.intro-locked {
 
 .music-widget-header {
   justify-content: center;
-  min-height: 2.8rem;
+  min-height: 2.15rem;
 }
 
 .music-drag-handle {
@@ -188,7 +188,6 @@ body.intro-locked {
 }
 
 .music-drag-handle:active { cursor: grabbing; }
-}
 
 .music-track,
 .music-track-title,
@@ -203,8 +202,8 @@ body.intro-locked {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 15rem;
-  padding: 0.1rem 2rem;
+  min-width: 0;
+  padding: 0.1rem 1.5rem;
   color: var(--text-white);
   background: transparent;
   border: 0;
@@ -216,15 +215,15 @@ body.intro-locked {
 .music-select-wrap { position: relative; }
 
 .music-track-title {
-  font-size: 1.15rem;
+  font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.15;
 }
 
 .music-track-artist {
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
   color: var(--muted-text);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
 }
 
 .music-track-menu {
@@ -276,10 +275,9 @@ body.intro-locked {
 }
 
 .music-controls {
-  display: grid;
-  grid-template-columns: 1fr repeat(3, auto) 1fr auto;
   justify-content: center;
-  margin-top: 0.45rem;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
 }
 
 .music-icon-button {
@@ -303,14 +301,7 @@ body.intro-locked {
 }
 
 .music-favorite {
-  grid-column: 1;
-  justify-self: start;
   font-size: 1.75rem;
-}
-
-.music-mute {
-  grid-column: 6;
-  justify-self: end;
 }
 
 .music-favorite.is-favorite { color: var(--impact-orange); }
@@ -334,8 +325,8 @@ body.intro-locked {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 0.7rem;
-  margin-top: 0.8rem;
+  gap: 0.45rem;
+  margin-top: 0.45rem;
 }
 
 .music-time {

@@ -1,10 +1,10 @@
 # Implementation Plan: FEAT-002 Glass music widget
 
 Created: 2026-09-12T20:15:05+08:00
-Updated: 2026-09-12T22:05:00+08:00
-Revision: 6
-Status: Complete; compact widget refinement implemented and verified
-Feature spec and revision: [FEAT-002 revision 4](../features/FEAT-002-music-widget.md)
+Updated: 2026-09-13T08:45:19+08:00
+Revision: 7
+Status: Complete; compact centered-control refinement implemented and verified
+Feature spec and revision: [FEAT-002 revision 5](../features/FEAT-002-music-widget.md)
 Approved baseline and architecture revisions: [Product revision 4](../product/OVERVIEW.md), [Architecture revision 4](../product/ARCHITECTURE.md)
 Len's chat approval: `okay proceed with implementing, also make sure to make changes on the documentation` on 2026-09-12 after the round-1 proposals.
 
@@ -32,6 +32,7 @@ State: Complete
 - [x] Repair the browser bootstrap, autoplay fallback, and widget-styled track menu after user verification.
 - [x] Reshape the widget around the reference hierarchy with centered metadata, progress seeking, icon controls, and a functional favorite action.
 - [x] Tighten the card dimensions, move mute to the lower-right control slot, and add an upward-opening picker with a drag-handle fallback.
+- [x] Reduce the desktop card to roughly half width, tighten spacing, and center the complete control group without shrinking hit areas.
 
 ### Verification
 
@@ -50,10 +51,12 @@ State: Complete
 - [x] Review correctness, accessibility, scope, dependency count, and Ponytail simplicity.
 - [x] Update plan, evidence, and current handoff with actual results.
 - [x] Stage only reviewed correction paths and verify the staged diff.
-- [x] Commit with `fix(portfolio): refine music widget interface` and verify Git reports success.
+- [x] Commit with `fix(portfolio): halve music widget and center controls` and verify Git reports success.
 
-Checkpoint message: `fix(portfolio): refine music widget interface`
+Checkpoint message: `fix(portfolio): halve music widget and center controls`
 Phase completion requires all gates and a successful commit.
+
+Len's direct approval for this refinement: `the music player widget on the right side is still way too big, can you make it 50% smaller? and also the music control buttons are not centered` on 2026-09-13T08:45:19+08:00.
 
 ## Recovery
 

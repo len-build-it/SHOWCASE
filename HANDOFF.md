@@ -1,10 +1,10 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T22:38:23+08:00
-Revision: 14
-State: FEAT-002 compact widget refinement complete; FEAT-003 narrower line-only neon refinement implemented on master
-Feature: FEAT-003
+Updated: 2026-09-13T08:45:19+08:00
+Revision: 16
+State: FEAT-002 compact centered-control refinement complete; FEAT-003 narrower line-only neon refinement remains implemented on master
+Feature: FEAT-002
 
 ## Read first
 
@@ -38,24 +38,33 @@ Reread these files and inspect actual Git status before acting.
 | FEAT-001 shell refinement | Revision 3 feature spec and Revision 5 product and architecture documents | User request "Remove the header thingy and for the footer just include a privacy policy" on 2026-09-12 |
 | FEAT-003 feature spec and plan | Revision 3 | User request to make the neon-blue line highlight 50% less wide on 2026-09-12 |
 | FEAT-002 compact widget refinement | Revision 4 feature spec and Revision 6 implementation plan | User request for the compact centered player, lower-right sound control, and upward drawer on 2026-09-12 |
+| FEAT-002 compact centered-control refinement | Revision 5 feature spec and Revision 7 implementation plan | User request for a 50% smaller widget and centered music controls on 2026-09-13T08:45:19+08:00 |
 
-Allowed work: Verify and commit the narrower FEAT-003 line-only neon refinement on `master`; do not add behavior beyond revision 3.
+Allowed work: Verify and commit the FEAT-002 compact centered-control refinement on `master`; do not add behavior beyond revision 5.
 
-Allowed implementation phases: FEAT-003 narrower line-only neon refinement.
+Allowed implementation phases: FEAT-002 compact centered-control refinement.
 
 Architecture and behavior changes return to Len; this handoff cannot override the linked specs.
 
 ## Progress and working tree
 
-FEAT-003 specification revision 3 and its narrower one-phase refinement plan are approved by the user's direct 2026-09-12 request.
+FEAT-002 specification revision 5 and its one-phase refinement plan are approved by the user's direct 2026-09-13 request.
+
+FEAT-002 desktop music widget reduction is implemented in `site/styles.css`; the card is approximately half the prior width, spacing is tighter, and all five controls are centered without shrinking their hit areas.
+
+The isolated browser preview at `http://127.0.0.1:4175/` visually confirmed the released layout at `1280x720`.
 
 FEAT-003 line-highlight narrowing is implemented on `master`; browser visual recheck is pending.
+
+The project README was added with local preview, verification, and directory structure instructions.
 
 FEAT-003 static checks passed, existing intro and music checks passed, and the available browser confirmed the fine-pointer line-only neon-blue state and no horizontal overflow.
 
 Direct touch, coarse-pointer, reduced-motion, and pointer-leave browser scenarios remain pending because the available embedded browser did not expose those emulations during this run.
 
 FEAT-002 compact widget refinement is complete in the integration worktree with passing music, intro, syntax, browser interaction, and diff checks.
+
+The FEAT-002 centered-control reduction is complete in the working tree with passing music, intro, syntax, browser preview, and diff checks.
 
 FEAT-001 Phase 1 implementation and verification are complete at commit `c142ebd`.
 
@@ -92,6 +101,7 @@ All Phase 1 verification gates passed:
    - `reduced-motion.png`: Immediate static reveal bypassing animation.
 7. Browser verification confirmed the footer Privacy Policy link opens `privacy.html`, its policy sections are readable, and its back link returns to the story page.
 8. Integrated preview verification measured the widget at approximately `480x164`, confirmed centered metadata, lower-right mute, upward drag selection, and no browser warnings or errors while preserving FEAT-003 spotlight code.
+9. The 2026-09-13 isolated preview measured the reduced desktop card at approximately half the previous width, confirmed all five controls centered as one group, and preserved the existing button hit areas.
 
 ## Blockers and attempts
 
@@ -102,7 +112,7 @@ All Phase 1 verification gates passed:
 
 ## Next action
 
-Run the browser visual recheck for the narrower line highlight, then record the result and create its checkpoint commit.
+Review and commit the FEAT-002 compact centered-control refinement, preserving the unrelated existing edits in `HANDOFF.md` and `README.md`.
 
 ## Revision history
 
@@ -117,3 +127,5 @@ Run the browser visual recheck for the narrower line highlight, then record the 
 - Revision 12 records the isolated `codex/neon-grid-lines` branch, removal of the filled spotlight, stronger neon-blue line-only behavior, verification, and intentionally pending commit.
 - Revision 13 records the current-master integration worktree, compact music-widget layout and drawer verification, and the separate FEAT-003 branch state.
 - Revision 14 records the requested reduction of the FEAT-003 highlight diameter from 220px to 110px.
+- Revision 15 records the added project README and its documented local workflow.
+- Revision 16 records the FEAT-002 roughly half-width desktop card, centered control group, regression checks, and pending checkpoint commit.

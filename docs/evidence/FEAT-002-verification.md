@@ -1,8 +1,8 @@
 # Verification: FEAT-002
 
 Created: 2026-09-12T20:21:59+08:00
-Updated: 2026-09-12T22:29:56+08:00
-Revision: 4
+Updated: 2026-09-13T08:45:19+08:00
+Revision: 5
 
 | Requirement / phase | Check or scenario | Environment and conditions | Actual result | When run | Evidence / limitations |
 | --- | --- | --- | --- | --- | --- |
@@ -25,6 +25,8 @@ Revision: 4
 | Upward drawer | Drag upward from the handle, then select `Mister Prime`. | Same integrated preview and browser. | Passed: the picker opened above the card, exposed all five tracks, and selection updated the title. | 2026-09-12T22:29:56+08:00 | Browser gesture evidence is from the in-app preview viewport. |
 | Lower-right sound control | Activate the sound control from the playback row. | Same integrated preview and local MP3. | Passed: `Unmute music` changed to `Mute music`, playback continued, and the live status announced `Music unmuted.`. | 2026-09-12T22:29:56+08:00 | Speaker output remains environment dependent. |
 | Browser console | Inspect warning and error logs after the interaction scenarios. | Same integrated preview and browser. | Passed: no warning or error entries were captured. | 2026-09-12T22:29:56+08:00 | Browser environment only. |
+| Compact centered-control refinement | Reload the isolated preview and inspect the released widget. | Codex in-app browser, isolated preview at `http://127.0.0.1:4175/`, viewport `1280x720`. | Passed: the desktop card is approximately half the previous width, spacing and metadata are tighter, and favorite, previous, play, next, and mute form one centered control group. | 2026-09-13T08:45:19+08:00 | Visual screenshot inspected; existing button hit areas remain unchanged. |
+| Regression checks | `node --check site/script.js`, `node --check scripts/preview.mjs`, `node --check scripts/check-music.mjs`, `node scripts/check-music.mjs`, `node scripts/check-intro.mjs`, and `git diff --check`. | Local Node.js v24.14.0 and current working tree. | Passed: all syntax, music, intro, and diff checks completed successfully. | 2026-09-13T08:45:19+08:00 | Does not replace physical-device playback review. |
 
 ## Limitations and pending evidence
 
@@ -39,3 +41,4 @@ Revision: 4
 - Revision 2 records the corrected plain-script bootstrap, custom menu interaction, and autoplay limitation.
 - Revision 3 records the reference-style layout, seek control, metadata, favorite action, and browser interaction checks.
 - Revision 4 records the compact dimensions, lower-right mute placement, upward drag drawer, integrated-master verification, and clean console run.
+- Revision 5 records the roughly half-width desktop card, centered control group, preserved hit areas, and regression checks.
