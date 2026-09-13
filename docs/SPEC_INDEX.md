@@ -17,7 +17,7 @@ Revision: 13
 | Feature | FEAT-003 | [Cursor grid spotlight](features/FEAT-003-cursor-spotlight.md) | 3 | Narrower line-only neon refinement implemented; browser recheck pending | New |
 | Plan | FEAT-003-PLAN | [implementation plan](plans/FEAT-003-implementation.md) | 3 | Narrower refinement implemented; browser recheck pending | New |
 | Evidence | FEAT-003-EVIDENCE | [verification record](evidence/FEAT-003-verification.md) | 3 | Prior verification recorded; narrower highlight recheck pending | New |
-| Handoff | HANDOFF | [current handoff](../HANDOFF.md) | 16 | FEAT-002 compact centered-control refinement complete; FEAT-003 narrower line-only neon refinement implemented | Same document revision 15 |
+| Handoff | HANDOFF | [current handoff](../HANDOFF.md) | 17 | FEAT-002 compact centered-control refinement complete; FEAT-003 narrower line-only neon refinement implemented | Same document revision 16 |
 
 Current implementation plan: FEAT-002 plan revision 7 for the compact centered-control glass music widget refinement.
 

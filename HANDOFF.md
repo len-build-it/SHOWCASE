@@ -1,9 +1,9 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-13T08:45:19+08:00
-Revision: 16
-State: FEAT-002 compact centered-control refinement complete; FEAT-003 narrower line-only neon refinement remains implemented on master
+Updated: 2026-09-13T08:49:51+08:00
+Revision: 17
+State: FEAT-002 compact centered-control refinement complete at commit `afe144d`; FEAT-003 narrower line-only neon refinement remains implemented on master
 Feature: FEAT-002
 
 ## Read first
@@ -112,7 +112,7 @@ All Phase 1 verification gates passed:
 
 ## Next action
 
-Review and commit the FEAT-002 compact centered-control refinement, preserving the unrelated existing edits in `HANDOFF.md` and `README.md`.
+Run the browser visual recheck for the narrower FEAT-003 line highlight, preserving the unrelated existing `README.md` edit.
 
 ## Revision history
 
@@ -128,4 +128,4 @@ Review and commit the FEAT-002 compact centered-control refinement, preserving t
 - Revision 13 records the current-master integration worktree, compact music-widget layout and drawer verification, and the separate FEAT-003 branch state.
 - Revision 14 records the requested reduction of the FEAT-003 highlight diameter from 220px to 110px.
 - Revision 15 records the added project README and its documented local workflow.
-- Revision 16 records the FEAT-002 roughly half-width desktop card, centered control group, regression checks, and pending checkpoint commit.
+- Revision 16 records the FEAT-002 roughly half-width desktop card, centered control group, regression checks, and checkpoint commit `afe144d`.
