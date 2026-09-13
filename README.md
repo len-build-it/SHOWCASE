@@ -4,6 +4,10 @@ A static, story-led portfolio for Lenard Angelo Olajay.
 
 The page presents a blueprint-inspired introduction, a short build sequence, a local music player, and a responsive narrative about Len's approach to solving problems. Project stories will be added as they are ready.
 
+## Live site
+
+Open the deployed portfolio at <https://lenshowcasesite.onrender.com/>.
+
 ## Run locally
 
 This project needs no install step or build tool.
