@@ -1,10 +1,10 @@
 # Implementation Plan: Living Blueprint portfolio skeleton
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:54:50+08:00
-Revision: 4
+Updated: 2026-10-03T19:37:06+08:00
+Revision: 5
 Status: Approved; Phase 1 and shell refinement implemented and verified
-Feature spec and revision: [FEAT-001 revision 3](../features/FEAT-001-living-blueprint.md)
+Feature spec and revision: [FEAT-001 revision 4](../features/FEAT-001-living-blueprint.md)
 Product and architecture proposals: [Overview revision 5](../product/OVERVIEW.md) and [architecture revision 5](../product/ARCHITECTURE.md).
 Len's chat approval: Approved by Len in chat with "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00.
 
@@ -123,7 +123,7 @@ State: Implemented and verified
 
 The music widget header and controls remain unchanged by this phase.
 
-Project chapters start only after Len supplies project materials and approves a project-content revision.
+This original plan did not include project chapters. Len later authorized project content through FEAT-004 revision 1 on 2026-10-03.
 
 ## Recovery
 
@@ -139,3 +139,4 @@ Interrupted or failing work remains uncommitted and the phase remains incomplete
 - Revision 2 retains one phase and adds concrete tracked files, preview and release checks, storyboard inputs, failure scenarios, screenshot evidence, and corrected approval attribution.
 - Revision 3 records Len's chat approval, completed Phase 1 tasks and verifications, and prepares for the phase checkpoint commit.
 - Revision 4 records the approved minimal site-shell refinement and Privacy Policy route verification.
+- Revision 5 records that project content is now specified under FEAT-004 revision 1 and remains outside the completed skeleton phase.

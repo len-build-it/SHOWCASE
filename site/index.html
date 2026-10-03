@@ -111,6 +111,7 @@
         </div>
         <p class="hero-subtitle">Builder. Problem solver.</p>
         <p class="hero-lead">I start with a problem worth understanding.</p>
+        <p class="hero-award"><span>TEAM AQUANONS</span> // Champion, 2026 RSTW Student Startup Competition <span class="award-project">AqOne</span></p>
       </div>
     </section>
 
@@ -145,29 +146,123 @@
         <div class="chapter-header-rule">
           <span class="marker-coord">SEC_03 // ARTIFACT</span>
           <span class="rule-divider">//</span>
-          <span class="rule-tag">FRAME // WORK IN PROGRESS</span>
+          <span class="rule-tag">FIELD NOTES // SELECTED BUILDS</span>
         </div>
         <h2 id="build-title" class="chapter-title">From questions to working things.</h2>
-        
-        <!-- Truthful work-in-progress drafting frame (no fake project cards or invented metrics) -->
-        <div class="blueprint-wip-frame" role="region" aria-label="Project stories status">
-          <div class="frame-corner top-left" aria-hidden="true"></div>
-          <div class="frame-corner top-right" aria-hidden="true"></div>
-          <div class="frame-corner bottom-left" aria-hidden="true"></div>
-          <div class="frame-corner bottom-right" aria-hidden="true"></div>
-          <div class="frame-header">
-            <span class="drafting-note">Project stories in progress</span>
-            <span class="frame-status">STAGE // DRAFTING SKELETON</span>
+        <p class="chapter-body project-intro">A selection of community tools, experiments, and learning builds. Use the controls or swipe through the notes.</p>
+        <div class="project-carousel" id="project-carousel" role="region" aria-roledescription="carousel" aria-label="Project showcase">
+          <div class="project-carousel-topline">
+            <p class="project-count" id="project-count" aria-live="polite">01 / 17</p>
+            <div class="project-controls">
+              <button class="project-control" id="project-previous" type="button" aria-label="Previous project" aria-disabled="true">← <span>Previous</span></button>
+              <button class="project-control" id="project-next" type="button" aria-label="Next project"> <span>Next</span> →</button>
+            </div>
           </div>
-          <div class="frame-body">
-            <p class="frame-text">
-              Project stories are being prepared. This space will show the problem, the constraints, the build, and what I learned.
-            </p>
+          <div class="project-track" id="project-track" tabindex="0" aria-label="Project stories. Use the arrow keys or scroll to explore.">
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="1 of 17">
+              <p class="project-meta">01 // COMMUNITY SAFETY · TEAM PROJECT</p>
+              <h3>AqOne</h3>
+              <p>Team Aquanons' maritime-safety project for fishing communities. The team earned Champion at the 2026 RSTW Student Startup Competition.</p>
+              <p class="project-note">Award belongs to Team Aquanons. Public story only; the source and team materials are confidential.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="2 of 17">
+              <p class="project-meta">02 // COMMUNITY RESPONSE · WEB</p>
+              <h3>Project Tabang</h3>
+              <p>A flood-reporting and response app for Aklan, connecting residents with responders through incident reporting, status updates, and review workflows.</p>
+              <p class="project-note">Contribution: backend development and technical presentation.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="3 of 17">
+              <p class="project-meta">03 // PERSONAL JOURNAL · MOBILE</p>
+              <h3>Warang</h3>
+              <p>An offline-first photo journal that brings together camera moments, place pins, and local search in a map-centered mobile experience.</p>
+              <p class="project-note">A product exploration in local storage, maps, and location-aware mobile design.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="4 of 17">
+              <p class="project-meta">04 // ORGANIZATION TOOLS · WEB + MOBILE</p>
+              <h3>Pipeline</h3>
+              <p>An organization manager for member records, tasks, and announcements, with a Flutter companion that supports cached offline reads.</p>
+              <p class="project-note">The local MVP is complete; production operations and device release work remain separate.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="5 of 17">
+              <p class="project-meta">05 // DEVELOPER TOOLING · NODE.JS</p>
+              <h3>Len's Toolkit</h3>
+              <p>A dependency-free CLI for setting up AI-assisted development workflows while detecting local edits and preserving project customizations.</p>
+              <p class="project-note">Curated and adapted skills retain their original attribution.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="6 of 17">
+              <p class="project-meta">06 // STUDENT COMMUNITY · WEB</p>
+              <h3>DevGuild Website</h3>
+              <p>A responsive community site for discovering the organization, its events, and member projects, with reusable pages and a themed interface.</p>
+              <p class="project-note">Community photos and member information are kept out of this showcase.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="7 of 17">
+              <p class="project-meta">07 // PROJECT COMMUNICATION · WEB</p>
+              <h3>Aquanons Public Website</h3>
+              <p>A public-facing companion that explains AqOne's purpose, progress, and hardware to people outside the engineering team.</p>
+              <p class="project-note">Presented alongside AqOne as its communication experience.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="8 of 17">
+              <p class="project-meta">08 // AI-ASSISTED BUILD EXPERIMENT · MOBILE</p>
+              <h3>CatTinder</h3>
+              <p>A cat-matching app brief implemented with three AI coding models to explore profile browsing, matches, and simulated chat interactions.</p>
+              <p class="project-note">An experiment, not a controlled benchmark or model ranking.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="9 of 17">
+              <p class="project-meta">09 // STUDY TOOL · WEB</p>
+              <h3>Software Engineering Reviewer</h3>
+              <p>An interactive reviewer with flashcards, matching activities, search, a timer, and local progress tracking, built with plain web technologies.</p>
+              <p class="project-note">Course material and derived content require attribution review before redistribution.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="10 of 17">
+              <p class="project-meta">10 // ACOUSTIC RESPONSE · PROTOTYPE</p>
+              <h3>BantAI</h3>
+              <p>A concept for an acoustic incident-response system combining distributed sensors and a spatial dashboard.</p>
+              <p class="project-note">Prototype only. Detection models and real-world accuracy are not complete or verified.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="11 of 17">
+              <p class="project-meta">11 // MARKETPLACE · EARLY PROTOTYPE</p>
+              <h3>Ani.Aklan</h3>
+              <p>An early farmer-to-consumer marketplace concept with a harvest-to-table landing page and product presentation.</p>
+              <p class="project-note">Contribution and ownership need confirmation before this can be presented as authored work.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="12 of 17">
+              <p class="project-meta">12 // DEVELOPMENT WORKFLOWS · OPEN SOURCE FORK</p>
+              <h3>Superpowers</h3>
+              <p>A customized fork exploring AI-assisted engineering workflows, review practices, and simpler implementation habits.</p>
+              <p class="project-note">Fork status and upstream authorship are preserved; see the repository for its license and notices.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="13 of 17">
+              <p class="project-meta">13 // COMMUNITY OPERATIONS · AUTOMATION</p>
+              <h3>DevGuild Document Tools</h3>
+              <p>Small Python and JavaScript tools for generating repeatable administrative documents and presentations.</p>
+              <p class="project-note">Public examples use synthetic data; rosters, signatures, and member records stay private.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="14 of 17">
+              <p class="project-meta">14 // LEARNING BUILD · PYTHON</p>
+              <h3>Python Seminar Projects</h3>
+              <p>A collection of learning exercises across Python fundamentals, data handling, object-oriented programming, and a Tkinter banking simulator.</p>
+              <p class="project-note">Use only synthetic account data in any public examples.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="15 of 17">
+              <p class="project-meta">15 // LEARNING BUILD · JAVA</p>
+              <h3>Java Programming Exercises</h3>
+              <p>Small console and object-oriented exercises for calculating prices, ingredients, quantities, and totals.</p>
+              <p class="project-note">Selected completed exercises; unfinished work and compiled output are not presented as finished software.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="16 of 17">
+              <p class="project-meta">16 // COMPATIBILITY NOTE · TECHNICAL WRITE-UP</p>
+              <h3>Cisco Virtual Desktop Startup Fix</h3>
+              <p>A short compatibility fix and explanation for starting a legacy virtual desktop after browser support changed.</p>
+              <p class="project-note">The software belongs to its original owners and is not redistributed here.</p>
+            </article>
+            <article class="project-slide" role="group" aria-roledescription="slide" aria-label="17 of 17">
+              <p class="project-meta">17 // EMPLOYER PORTFOLIO · WEB</p>
+              <h3>Portfolio and Credentials</h3>
+              <p>A separate recruiter-focused site for project summaries, education, and credentials, complementing these longer project stories.</p>
+              <p class="project-note">Personal contact and identity documents are not included in this project showcase.</p>
+            </article>
           </div>
-          <div class="frame-footer" aria-hidden="true">
-            <span class="blueprint-hash">REF // BP-2026-OLAJAY-01</span>
-            <span class="blueprint-scale">SCALE // 1:1 WORKING EVIDENCE</span>
-          </div>
+          <p class="project-scroll-hint" aria-hidden="true">SCROLL OR SWIPE TO EXPLORE</p>
         </div>
       </div>
     </section>

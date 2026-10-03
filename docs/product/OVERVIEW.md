@@ -1,9 +1,9 @@
 # Product overview: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T21:15:35+08:00
-Revision: 6
-Status: Approved by Len through FEAT-003 approval on 2026-09-12
+Updated: 2026-10-03T19:14:28+08:00
+Revision: 7
+Status: Approved baseline; project-story and slider addition authorized by direct request on 2026-10-03
 
 ## Purpose and users
 
@@ -20,7 +20,8 @@ Success means a visitor understands Len's builder identity, remembers the openin
 - A story-led one-page experience with a clear beginning, middle, and closing connection.
 - A non-skippable minimal hammer line-art intro that makes the site feel like it is being built as it loads.
 - A glass music widget using Len's supplied local MP3 playlist, with graceful behavior when autoplay is blocked or audio is unavailable.
-- A blueprint-inspired project section that starts as an honest work-in-progress state and later becomes a set of project chapters.
+- A blueprint-inspired project section with 17 concise project and supporting-work stories in a manual, accessible slider.
+- An accurate Team Aquanons attribution for AqOne's 2026 RSTW Student Startup Competition champion recognition.
 - A no-trace cursor spotlight that makes the nearby blueprint grid respond on fine-pointer devices.
 - A short section describing Len's building method and problem-solving principles.
 - A final contact section that points visitors toward the next build.
@@ -29,11 +30,11 @@ Success means a visitor understands Len's builder identity, remembers the openin
 
 ## Scope and non-goals
 
-The first implementation covers the visual and narrative skeleton only.
+The original skeleton implementation covered the visual and narrative foundation. FEAT-004 adds the project stories and manual slider authorized on 2026-10-03.
 
 The completed skeleton remains independently readable, and the approved audio delivery is specified and implemented separately in [FEAT-002](../features/FEAT-002-music-widget.md).
 
-The first implementation does not include real project entries, detailed case studies, résumé content, credentials, authentication, a CMS, forms, analytics, or a backend.
+Project entries use concise inventory-grounded descriptions. Full detailed case studies, résumé content, credentials, authentication, a CMS, forms, analytics, and a backend remain outside this site scope.
 
 The site does not attempt to replace the existing employer-focused portfolio.
 
@@ -45,7 +46,7 @@ The main page keeps site chrome minimal by omitting a persistent header and expo
 
 - Proposed public-facing copy and an intro storyboard are specified in [FEAT-001 revision 2](../features/FEAT-001-living-blueprint.md) for review.
 - The supplied MP3 files are now present in the root `music/` directory and their hosting rights remain Len's responsibility.
-- Project chapters will be specified after the skeleton is approved.
+- FEAT-004 revision 1 specifies the project entries, privacy and attribution treatment, and manual slider.
 
 Len approved the immediately preceding conversational baseline with the message "approve baseline" on 2026-09-11.
 
@@ -66,3 +67,4 @@ Len requested the revision 5 site-shell refinement through the direct implementa
 - Revision 3 links the approved local music widget delivery and records that the supplied playlist is available.
 - Revision 4 records the corrected autoplay fallback and browser-compatible widget bootstrap.
 - Revision 5 records the simplified site shell and footer Privacy Policy link.
+- Revision 7 records the user-authorized project stories, team-attributed RSTW recognition, and manual slider in FEAT-004.

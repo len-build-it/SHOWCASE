@@ -1,10 +1,10 @@
 # Current handoff
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-13T08:49:51+08:00
-Revision: 17
-State: FEAT-002 compact centered-control refinement complete at commit `afe144d`; FEAT-003 narrower line-only neon refinement remains implemented on master
-Feature: FEAT-002
+Updated: 2026-10-03T19:40:14+08:00
+Revision: 18
+State: FEAT-004 project stories and manual slider implemented; responsive viewport checks and phase checkpoint remain pending
+Feature: FEAT-004
 
 ## Read first
 
@@ -21,6 +21,9 @@ Feature: FEAT-002
 - [Current feature spec](docs/features/FEAT-003-cursor-spotlight.md)
 - [Current implementation plan](docs/plans/FEAT-003-implementation.md)
 - [Current verification record](docs/evidence/FEAT-003-verification.md)
+- [Current feature spec](docs/features/FEAT-004-project-showcase.md)
+- [Current implementation plan](docs/plans/FEAT-004-implementation.md)
+- [Current verification record](docs/evidence/FEAT-004-verification.md)
 
 Reread these files and inspect actual Git status before acting.
 
@@ -39,12 +42,13 @@ Reread these files and inspect actual Git status before acting.
 | FEAT-003 feature spec and plan | Revision 3 | User request to make the neon-blue line highlight 50% less wide on 2026-09-12 |
 | FEAT-002 compact widget refinement | Revision 4 feature spec and Revision 6 implementation plan | User request for the compact centered player, lower-right sound control, and upward drawer on 2026-09-12 |
 | FEAT-002 compact centered-control refinement | Revision 5 feature spec and Revision 7 implementation plan | User request for a 50% smaller widget and centered music controls on 2026-09-13T08:45:19+08:00 |
+| FEAT-004 project stories and slider | FEAT-004 feature spec revision 1 and implementation plan revision 1 | User request "Alright need you to update the portfolio based on your findings, it should still maintain the blog style styling but I think the rstw champion for AqOne is good too. Also add a slider feature on the project showcase too" on 2026-10-03 |
 
-Allowed work: Verify and commit the FEAT-002 compact centered-control refinement on `master`; do not add behavior beyond revision 5.
+Allowed work: Finish FEAT-004 responsive and final diff checks, then commit only its reviewed paths on `master`.
 
-Allowed implementation phases: FEAT-002 compact centered-control refinement.
+Allowed implementation phases: FEAT-004 Phase 1 only, as defined by its revision 1 documents.
 
-Architecture and behavior changes return to Len; this handoff cannot override the linked specs.
+The direct request authorizes the project stories and manual slider; changes outside that FEAT-004 scope return to Len.
 
 ## Progress and working tree
 
@@ -66,6 +70,16 @@ FEAT-002 compact widget refinement is complete in the integration worktree with 
 
 The FEAT-002 centered-control reduction is complete in the working tree with passing music, intro, syntax, browser preview, and diff checks.
 
+FEAT-004 replaces the project placeholder with 17 inventory-grounded entries and adds the Team Aquanons RSTW champion note and manual scroll-snap slider.
+
+The slider uses labeled previous/next buttons, a first-visible position counter, focused-track arrow keys, native horizontal scrolling, and immediate button movement without autoplay or new dependencies.
+
+The 768px in-app browser confirmed the AqOne and Tabang entries, manual navigation, first and final control states, keyboard movement, and all 17 accessible slides; the existing story, music controls, method, contact links, and Privacy Policy remained in the rendered document.
+
+The 1440px, 390px, and 320px viewport checks and direct touch/preference emulation were unavailable in the in-app browser; see FEAT-004 evidence for the limitation.
+
+The required `npx len-toolkit start` setup was attempted with a task-specific temporary cache and failed with `EACCES` while reaching the npm registry; no instruction-difference report was produced and no dependencies were added.
+
 FEAT-001 Phase 1 implementation and verification are complete at commit `c142ebd`.
 
 FEAT-002 base implementation is complete at the local checkpoint commit; its correction pass is complete at the local fix checkpoint commit.
@@ -84,7 +98,9 @@ Authored tracked files created:
 
 Existing untracked project instruction and configuration files (`.agents/`, `.editorconfig`, `.gitignore`, `AGENTS.md`, `GEMINI.md`) were preserved.
 
-FEAT-002 implements the previously deferred audio direction using the supplied local MP3 files; real project content remains deferred.
+FEAT-002 implements the previously deferred audio direction using the supplied local MP3 files.
+
+FEAT-004 adds project stories in `site/index.html`, slider styling in `site/styles.css`, keyboard and control behavior in `site/script.js`, and its feature, plan, and evidence documents under `docs/`.
 
 ## Checks and evidence
 
@@ -108,11 +124,12 @@ All Phase 1 verification gates passed:
 | Problem | Fix-and-check attempts used (maximum 3) | Changes tried and observed result | Required decision or access |
 | --- | --- | --- | --- |
 | FEAT-002 audio behavior | 0 | Approved local playlist behavior is implemented and verified in the available browser; full-track wraparound and physical-device playback remain unrun. | Len's physical-device review for speaker output and mobile safe-area behavior. |
-| Project stories content is pending. | 0 | Build chapter uses honest work-in-progress drafting frame without fake claims. | Len's project content and approved project delivery. |
+| FEAT-004 viewport matrix | 0 | Browser interaction passed at 768px, but the in-app browser did not expose viewport emulation for the other required widths or direct touch/preference emulation. | A browser with viewport override for the specified widths; physical touch evidence remains Len's responsibility. |
+| Session setup command | 1 | `npx len-toolkit start` failed when npm received `EACCES` fetching the package; no setup diff report was available. | npm registry access or a reachable local setup command. |
 
 ## Next action
 
-Run the browser visual recheck for the narrower FEAT-003 line highlight, preserving the unrelated existing `README.md` edit.
+Complete the remaining FEAT-004 viewport checks when a browser with viewport emulation is available, run `git diff --check`, inspect only FEAT-004 paths for staging, preserve the untracked private inventory report, and commit the reviewed phase.
 
 ## Revision history
 
@@ -129,3 +146,4 @@ Run the browser visual recheck for the narrower FEAT-003 line highlight, preserv
 - Revision 14 records the requested reduction of the FEAT-003 highlight diameter from 220px to 110px.
 - Revision 15 records the added project README and its documented local workflow.
 - Revision 16 records the FEAT-002 roughly half-width desktop card, centered control group, regression checks, and checkpoint commit `afe144d`.
+- Revision 18 records the FEAT-004 authorization, 17 project stories, manual slider, 768px interaction checks and existing regressions, setup network failure, and remaining viewport checks.

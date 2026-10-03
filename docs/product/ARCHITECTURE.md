@@ -1,9 +1,9 @@
 # Architecture: Living Blueprint Portfolio
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T21:15:35+08:00
-Revision: 6
-Status: Approved by Len through FEAT-003 approval on 2026-09-12
+Updated: 2026-10-03T19:14:28+08:00
+Revision: 7
+Status: Approved baseline; FEAT-004 behavior authorized by direct request on 2026-10-03
 
 ## Observed facts and assumptions
 
@@ -13,7 +13,7 @@ The reference portfolio is a deployed static site at [lenardangeloolajay.onrende
 
 The new site is a separate one-page showcase and should not duplicate the reference site's employer-oriented credentials structure.
 
-The MP3 and final project materials are not available yet.
+The supplied MP3 playlist is integrated. A project inventory is available; individual source sharing rights and some contribution claims remain qualified by FEAT-004.
 
 The current branch is `master`, Node v24.14.0 is available, and `.gitignore` excludes `dist/` and `build/`.
 
@@ -35,7 +35,7 @@ The intro uses one local minimal hammer illustration asset with CSS motion, plus
 
 The page uses semantic sections for arrival, problem, build, method, and closing connection.
 
-The project area uses truthful placeholder content until project material is supplied.
+The project area contains static stories and a manual horizontal slider. The scroll track uses browser-native overflow and CSS scroll snap; a small script updates its controls, position, and focused-track arrow-key movement.
 
 The music delivery uses one native HTML audio element and independent playback state; it never gates the intro or content release.
 
@@ -71,7 +71,9 @@ In a background tab, timers may be delayed; on returning to the foreground, comp
 
 The silent skeleton's deferred audio requirements remain historical scope boundaries; the approved implementation is tracked and verified under FEAT-002.
 
-Project content remains out of the skeleton to avoid inventing details and to keep the later content phase independently reviewable.
+Project copy is static HTML grounded in the local inventory. Unverified ownership, prototype status, team confidentiality, and third-party attribution are stated in each relevant entry.
+
+The project slider has no auto-advance, no external asset, no persisted state, and no third-party dependency. All slide text stays in the document when JavaScript is unavailable.
 
 The browser bootstrap uses a plain script so static hosting and direct browser loading do not fail solely because module execution is unavailable.
 
@@ -93,6 +95,8 @@ Len approved the revision 3 local music update through the 2026-09-12 implementa
 
 Len approved the revision 5 site-shell refinement through the direct implementation request on 2026-09-12T20:54:50+08:00.
 
+Len authorized the FEAT-004 project stories and manual slider through the direct implementation request recorded in [FEAT-004 revision 1](../features/FEAT-004-project-showcase.md).
+
 Revisit the static approach only if later approved interactions require capabilities beyond a static page.
 
 ## Revision history
@@ -102,3 +106,4 @@ Revisit the static approach only if later approved interactions require capabili
 - Revision 3 records the approved native local-playlist audio boundary and analyser fallback.
 - Revision 4 records the plain-script bootstrap, custom listbox, and muted autoplay fallback.
 - Revision 5 records the separate Privacy Policy page and removal of persistent site navigation.
+- Revision 7 records the static project stories and browser-native scroll-snap slider without new dependencies.

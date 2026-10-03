@@ -395,6 +395,58 @@ function setupMusicPlayer() {
   playAudio({fallbackToMuted: true});
 }
 
+function setupProjectCarousel() {
+  const track = document.getElementById('project-track');
+  const previous = document.getElementById('project-previous');
+  const next = document.getElementById('project-next');
+  const count = document.getElementById('project-count');
+  if (!track || !previous || !next || !count) return;
+
+  const slides = Array.from(track.querySelectorAll('.project-slide'));
+  if (!slides.length) return;
+  function firstVisibleIndex() {
+    const left = track.getBoundingClientRect().left + track.clientLeft;
+    const index = slides.findIndex((slide) => slide.getBoundingClientRect().right > left + 1);
+    return Math.max(0, index);
+  }
+
+  function updateControls() {
+    const index = firstVisibleIndex();
+    previous.setAttribute('aria-disabled', String(track.scrollLeft <= 1));
+    next.setAttribute('aria-disabled', String(track.scrollLeft + track.clientWidth >= track.scrollWidth - 1));
+    count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+  }
+
+  function move(direction) {
+    updateControls();
+    const current = firstVisibleIndex();
+    const target = slides[Math.max(0, Math.min(slides.length - 1, current + direction))];
+    if (!target || target === slides[current]) return;
+    const trackLeft = track.getBoundingClientRect().left + track.clientLeft;
+    track.scrollBy({
+      left: target.getBoundingClientRect().left - trackLeft,
+      behavior: 'instant',
+    });
+  }
+
+  previous.addEventListener('click', () => {
+    if (previous.getAttribute('aria-disabled') !== 'true') move(-1);
+  });
+  next.addEventListener('click', () => {
+    if (next.getAttribute('aria-disabled') !== 'true') move(1);
+  });
+  track.addEventListener('scroll', updateControls, {passive: true});
+  track.addEventListener('keydown', (event) => {
+    if (event.target !== track) return;
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      move(event.key === 'ArrowRight' ? 1 : -1);
+    }
+  });
+
+  updateControls();
+}
+
 function setupCursorSpotlight() {
   const spotlightQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
   const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -441,6 +493,7 @@ if (typeof window !== 'undefined' && typeof document !== 'undefined') {
   const hammerAsset = document.getElementById('hammer-asset');
 
   setupMusicPlayer();
+  setupProjectCarousel();
   setupCursorSpotlight();
 
   // If user prefers reduced motion on initial load, do not activate intro

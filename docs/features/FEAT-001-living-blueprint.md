@@ -1,9 +1,9 @@
 # FEAT-001: Living Blueprint portfolio skeleton
 
 Created: 2026-09-11T20:23:09+08:00
-Updated: 2026-09-12T20:54:50+08:00
-Revision: 3
-Status: Approved by Len through direct implementation request on 2026-09-12T20:54:50+08:00
+Updated: 2026-10-03T19:37:06+08:00
+Revision: 4
+Status: Revision 3 skeleton remains approved; project stories are covered by FEAT-004 revision 1.
 
 ## Purpose and success
 
@@ -20,6 +20,8 @@ The site shell has no persistent header or chapter navigation, and its footer ex
 REQ-005 and REQ-006 remain reserved for future audio integration, including controls and failure handling; neither is a current-phase completion criterion.
 
 This feature excludes real project entries, case-study copy, project imagery, résumé or credentials content, contact-form submission, analytics, authentication, persistence, and deployment configuration.
+
+This exclusion records the original skeleton boundary. Len later authorized the project stories and manual slider in [FEAT-004 revision 1](FEAT-004-project-showcase.md) on 2026-10-03; that feature replaces the original work-in-progress project frame without revising the intro or earlier narrative requirements.
 
 ## User flows
 
@@ -141,7 +143,7 @@ No browser permission is requested.
 
 The skeleton has no durable data and no external API.
 
-The future project-content phase will define a project chapter shape after Len provides actual project material.
+The original skeleton left project content for later; FEAT-004 revision 1 now defines the current static project-story shape and its public content qualifications.
 
 The future audio phase accepts one local MP3 asset and exposes play, pause, and mute behavior through native browser controls or a small accessible control wrapper.
 
@@ -188,7 +190,7 @@ There are no missing project or audio assets required for the silent skeleton.
 
 Len approved feature spec FEAT-001 revision 2 in chat with "I approve this revisions. Proceed to implement" on 2026-09-11T21:20:30+08:00.
 
-Future music delivery still requires the supplied MP3 and approval of the deferred audio behavior; future project stories require actual project material.
+Future music delivery still requires the supplied MP3 and approval of the deferred audio behavior.
 
 The site shell refinement is approved through Len's direct request to remove the persistent header and leave only a Privacy Policy link in the footer.
 
@@ -198,3 +200,4 @@ The site shell refinement is approved through Len's direct request to remove the
 - Revision 2 adds the storyboard and proposed copy, positive visual criteria, fail-open behavior, explicit delivery ownership, and concrete accessibility scenarios.
 - REQ-001 through REQ-009 retain their identities; local IDs now use the `REQ-NNN` form, with `FEAT-001/REQ-NNN` retained for cross-document references.
 - Revision 3 records the simplified site shell, Privacy Policy page, and REQ-013 acceptance criteria.
+- Revision 4 records that the original project-content exclusion was superseded by FEAT-004 revision 1, without changing the approved intro and narrative requirements.
